@@ -8,5 +8,13 @@ function homePage()
 	$posts = $postManager->getFewPosts(0, 6);
 	$morePosts = $postManager->getFewPosts(0, 10);
 
-	require('view/frontend/homepage.php');
+	require('view/frontend/homePageView.php');
+}
+
+function readArticle($id)
+{
+	$postManager = new \AchievementGet\Website\Model\PostManager();
+	$post = $postManager->getPostById($id);
+
+	require('view/frontend/readArticleView.php');
 }

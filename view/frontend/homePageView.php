@@ -8,10 +8,10 @@
 	{
 	?>	
 		<figure class="illustratedPost">
-			<a href="#">
+			<a href="index.php?action=readarticle&amp;id=<?= $data['id']?>">
 				<img src="public/images/<?= $data['nameImage'] ?>" alt="<?= $data['title'] ?>" />
 				<figcaption>
-					<p><?= $data['title'] ?></p>
+					<p><?= htmlspecialchars($data['title']) ?></p>
 				</figcaption>
 			</a>
 		</figure>
@@ -27,7 +27,7 @@
 		{
 		?>
 			<div class="post">
-				<p><strong><?= $data['creation_date_fr'] ?> <a href="#" ><span class="categoryPost"><?= $data['category'] ?></span> <?= $data['title'] ?></a></strong></p>
+				<p><strong><?= $data['creation_date_fr'] ?> <a href="index.php?action=readarticle&amp;id=<?= $data['id']?>" ><span class="categoryPost"><?= $data['category'] ?></span> <?= htmlspecialchars($data['title']) ?></a></strong></p>
 			</div>
 		<?php
 		}

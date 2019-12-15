@@ -15,4 +15,14 @@ class PostManager extends Manager
 
 		return $query;
 	}
+
+	public function getPostById($id)
+	{
+		$db = $this->dbConnect();
+		$query = $db->prepare('SELECT id, nameImage, title, category, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%m\') as creation_date_fr FROM posts WHERE id = ?');
+		$query->execute(array($id));
+		$post = $query->fetch();
+
+		return $post;
+	}
 }
