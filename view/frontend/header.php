@@ -4,6 +4,5 @@
 	<a href="#">ACTU</a>
 	<a href="#">DOSSIERS</a>
 	<a href="#">FORUM</a>
-	<a href="#">SE CONNECTER</a>
-	<a href="#">S'INSCRIRE</a>
+	<a href="#">SE CONNECTER / S'INSCRIRE</a>
 </header>

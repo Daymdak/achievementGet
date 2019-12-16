@@ -1,20 +1,15 @@
+@font-face {
+	font-family: 'OpenSans';
+	src: url('../font/OpenSans-Regular.ttf');
+}
+
 body
 {
-	background-color: #111;
-	position: relative;
-	min-height: 100vh;
-	margin-top: 70px;
-	padding-bottom: 100px;
-	color: white;
+	background-color: #e9e9e9;
+	font-family: 'OpenSans';
 }
 
-body a
-{
-	color: white;
-	text-decoration: none;
-}
-
-body a:hover
+a, a:hover
 {
 	text-decoration: none;
 }
@@ -25,41 +20,63 @@ header
 	width: 100%;
 	position: fixed;
 	top: 0;
-	background-color: #333;
+	background-color: #222;
 	z-index: 30;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 }
 
+header a
+{
+	color: #fff;
+	font-weight: bold;
+}
+
 header a:hover
 {
-	color: #FFE565;
+	color: #EFBB12;
 }
 
 #logo
 {
-	width: 50px;
+	width: 210px;
+}
+
+.container
+{
+	background-color: #EFEFEF;
+	box-shadow: 0px 0px 3px black;
+	padding: 1px 2% 1px 2%;
+	min-height: 100vh;
 }
 
 footer
 {
-	position: absolute;
+	position: relative;
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: 100px;
+	height: 50px;
 	display: flex;
-	justify-content: flex-end;
+	justify-content: center;
 	align-items: flex-end;
+	background-color: #222;
 	padding-right: 1%;
+	color: #444;
+}
+
+#presentationText
+{
+	margin-top: 80px;
+	font-size: 14px;
 }
 
 #slider
 {
-	margin-top: 100px;
 	height: 400px;
 	width: 100%;
+	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
@@ -67,11 +84,19 @@ footer
 
 .illustratedPost
 {
-	border: 1px solid black;
+	box-shadow: 0 0 3px black;
 	overflow: hidden;
-	width: 32%;
+	width: 32.5%;
 	position: relative;
 }
+
+.illustratedPost:hover
+{
+	transform: scale(1.1);
+	z-index: 10;
+	transition-duration: 0.5s;
+}
+
 
 .illustratedPost img
 {
@@ -84,63 +109,144 @@ figcaption
 	bottom: 0px;
 	width: 100%;
 	height: 33.33%;
-	background-color: rgba(0, 0, 0, 0.7);
+	background-color: rgba(0, 0, 0, 0.6);
 	opacity: 0;
 }
 
 figure:hover figcaption
 {
 	opacity: 1;
-	transition-duration: 0.5s;
+	transition-duration: 0.3s;
 }
 
 figcaption p
 {
 	margin-left: 5px;
 	color: white;
+	font-weight: bold;
+}
+
+#titleSection
+{
+	font-weight: 900;
+	font-size: 22px;
 }
 
 #listLastPosts
 {
-	border: 1px solid white;
-	background-color: #333;
+	box-shadow: 0 0 3px black;
+	background-color: #242424;
+}
+
+#listLastPosts a
+{
+	color: #fff;
 }
 
 #listLastPosts a:hover
 {
-	color: #FFE565;
+	color: #EFBB12;
+}
+
+.post p
+{
+	margin: 0;
+	padding-top: 0.5%; 
+	height: 40px;
+}
+
+.post:hover
+{
+	transform: scaleX(1.04);
+	background-color: #111;
+	transition-duration: 0.25s;
 }
 
 .categoryPost
 {
 	display: inline-block;
-	color: #FFE565;
+	color: #EFBB12;
 	width: 20%;
+}
+
+.dateInListPost
+{
+	color: #fff;
 }
 
 #postBlock
 {
-	padding: 2%;
-	width: 70%;
+	width: 80%;
 	margin: 0 auto;
 	margin-top: 100px !important;
 	background-color: #333;
-	border: 2px solid black;
-}
-
-h1
-{
-	text-align: center;
+	box-shadow: 0 0 5px black;
+	color: #fff;
 }
 
 #postText
 {
 	text-align: justify;
+	padding: 3% 10% 5% 10%;
+	font-size: 18px;
+}
+
+#postText h1
+{
+	color: #EFBB12;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 34px;
 }
 
 #imagePost
 {
-	width: 100%;
-	margin-bottom: 20px;
-	border: 2px solid black;
+	width: 90%;
+	box-shadow: 0 0 4px black;
+	position: relative;
+	top: 80px;
+	left: 5%;
+}
+
+#metaDataPost
+{
+	font-size: 16px;
+	color: #CCC;
+}
+
+.postComment
+{
+	background-color: #fff;
+	border: .0625rem solid #d5d5d5;
+	padding: 1%;
+	margin-bottom: .9375rem;
+}
+
+form p, form p textarea
+{
+	width: 80%;
+	margin: 0 auto;
+}
+
+form .button
+{
+	background-color: #EFBB12;
+	border: none;
+	color: white;
+	font-weight: bold;
+	padding: 0.5% 3% 0.5% 3%;
+	border-radius: 5%;
+	margin: 1% 0 5% 0;
+}
+
+form .button:hover
+{
+	background-color: #DEAA01;
+}
+
+.postComment
+{
+	width: 80%;
+	margin: 0 auto;
+	margin-bottom: 1.5%;
 }

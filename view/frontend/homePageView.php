@@ -1,8 +1,10 @@
 <?php $title = 'Page d\'accueil - Achievement Get !'; ?>
 
 <?php ob_start(); ?>
-
-<div id="slider">
+<div id="presentationText">
+	<p><strong>Bienvenue sur Achivement Get !</strong> Vous retrouverez sur ce site des articles traitant de tout ce qui a un rapport de près ou de loin avec le jeu vidéo. Que ce soit de hardware, software, personnalité influente, histoire, e-sport ou même psychologie ! N'hésitez pas à vous inscrire pour participer à la vie du site, et à donner votre avis sur le contenu proposé !</p>
+</div>
+<div class="row" id="slider">
 	<?php
 	while($data = $posts->fetch())
 	{
@@ -20,14 +22,15 @@
 	?>
 </div>
 
-<div class="row mt-5">
+<div class="mt-5 mb-5">
+	<p id="titleSection">Liste des derniers articles</p>
 	<div id="listLastPosts" class="col-12">
 		<?php 
 		while ($data = $morePosts->fetch())
 		{
 		?>
 			<div class="post">
-				<p><strong><?= $data['creation_date_fr'] ?> <a href="index.php?action=readarticle&amp;id=<?= $data['id']?>" ><span class="categoryPost"><?= $data['category'] ?></span> <?= htmlspecialchars($data['title']) ?></a></strong></p>
+				<a href="index.php?action=readarticle&amp;id=<?= $data['id']?>" ><p><strong><span class="dateInListPost" ><?= $data['creation_date_fr'] ?></span> <span class="categoryPost"><?= $data['category'] ?></span> <?= htmlspecialchars($data['title']) ?></strong></p></a>
 			</div>
 		<?php
 		}

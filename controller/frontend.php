@@ -1,6 +1,7 @@
 <?php
 
 require_once('model/PostManager.php');
+require_once('model/CommentManager.php');
 
 function homePage()
 {
@@ -14,7 +15,10 @@ function homePage()
 function readArticle($id)
 {
 	$postManager = new \AchievementGet\Website\Model\PostManager();
+	$commentManager = new \AchievementGet\Website\Model\CommentManager();
+
 	$post = $postManager->getPostById($id);
+	$comments = $commentManager->getPostComments($_GET['id']);
 
 	require('view/frontend/readArticleView.php');
 }
