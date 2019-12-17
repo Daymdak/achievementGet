@@ -42,3 +42,25 @@ function register($pseudo, $password1, $password2, $email)
 		header('Location: index.php?action=loginview&error=' . $stateQuery);
 	}
 }
+
+function login($pseudo, $password, $rememberMe)
+{
+	$memberManager = new \AchievementGet\Website\Model\MemberManager();
+
+	$stateQuery = $memberManager->beConnect($pseudo, $password, $rememberMe);
+
+	if($stateQuery == 0) {
+		header('Location: index.php');
+	}
+	else {
+		header('Location: index.php?action=loginview&error=' . $stateQuery);
+	}
+}
+
+function unlog()
+{
+	session_destroy();
+	setcookie('pseudo', '');
+
+	header('Location: index.php');
+}

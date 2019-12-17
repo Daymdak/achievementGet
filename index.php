@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if (isset($_COOKIE['pseudo']) && isset($_COOKIE['password']))
+{
+	$_SESSION['pseudo'] = $_COOKIE['pseudo'];
+}
+
 require('controller/frontend.php');
 
 try {
@@ -24,10 +30,13 @@ try {
 			}
 		}
 		if ($_GET['action'] == 'login') {
-
+			login($_POST['pseudo'], $_POST['password'], $_POST['rememberMe']);
 		}
 		if ($_GET['action'] == 'register') {
-			register($_POST['pseudoRegister'], $_POST['password1Register'], $_POST['password2Register'], $_POST['emailRegister']);
+			register($_POST['pseudo'], $_POST['password1'], $_POST['password2'], $_POST['email']);
+		}
+		if ($_GET['action'] == 'unlog') {
+			unlog();
 		}
 	}
 	else {

@@ -4,5 +4,18 @@
 	<a href="#">ACTU</a>
 	<a href="#">DOSSIERS</a>
 	<a href="#">FORUM</a>
-	<a href="index.php?action=loginview">SE CONNECTER / S'INSCRIRE</a>
+	<?php
+		if(isset($_SESSION['pseudo'])) {
+		?>
+			<p>Bienvenue <a href="#"><?= $_SESSION['pseudo'] ?></a> !</p>
+			<p><a href="index.php?action=unlog">SE DECONNECTER</a></p>
+		<?php
+		}
+		else {
+		?>
+			<a href="index.php?action=loginview">SE CONNECTER / S'INSCRIRE</a>
+		<?php
+		}
+	?>
+	
 </header>

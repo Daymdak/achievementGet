@@ -25,6 +25,7 @@ header
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+	color: white;
 }
 
 header a
@@ -62,7 +63,7 @@ footer
 	justify-content: center;
 	align-items: flex-end;
 	background-color: #222;
-	padding-right: 1%;
+	padding-bottom: 1%;
 	color: #fff;
 }
 
@@ -182,7 +183,7 @@ figcaption p
 {
 	width: 80%;
 	margin: 0 auto;
-	margin-top: 100px !important;
+	margin-top: 20px !important;
 	background-color: #333;
 	box-shadow: 0 0 5px black;
 	color: #fff;
@@ -208,7 +209,6 @@ figcaption p
 	width: 90%;
 	box-shadow: 0 0 4px black;
 	position: relative;
-	top: 80px;
 	left: 5%;
 }
 
@@ -327,9 +327,10 @@ hr
 	margin-top: 3% !important;
 	font-weight: bold;
 	text-align: center;
+	box-shadow: 0 0 2px black;
 }
 
-#error p
+p
 {
-	margin: 0;
+	margin-bottom: 0;
 }

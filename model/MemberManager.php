@@ -52,4 +52,34 @@ class MemberManager extends Manager
 		else
 			return 1;
 	}
+
+	function beConnect($pseudo, $password, $rememberMe)
+	{
+		$db = $this->dbConnect();
+		$query = $db->prepare('SELECT id, password FROM members WHERE pseudo = :pseudo');
+		$query->execute(array(
+			'pseudo' => $pseudo
+		));
+		$result = $query->fetch();
+
+		$verifyPassword = password_verify($password, $result['password']);
+
+		if ($result)
+		{
+			if ($verifyPassword)
+			{
+				if ($rememberMe)
+				{
+					setcookie('pseudo', $pseudo, time() + 365*24*3600, null, null, false, true);
+					setcookie('password', $result['password'], time() + 365*24*3600, null, null, false, true);
+				}
+				$_SESSION['pseudo'] = $pseudo;
+				return 0;
+			}
+			else
+				return 6;
+		}
+		else
+			return 6;
+	}
 }
