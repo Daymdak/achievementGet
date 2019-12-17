@@ -135,7 +135,7 @@ figcaption p
 {
 	box-shadow: 0 0 3px black;
 	padding: 0;
-	background-color: #242424;
+	background-color: #333;
 }
 
 #listLastPosts a
@@ -314,4 +314,22 @@ hr
 {
 	color: white;
 	margin-left: 3px;
+}
+
+#error
+{
+	background: #EFCAD0;
+	width: 30%;
+	padding: 1%;
+	border-radius: 5px;
+	border: 1px solid red;
+	margin: 0 auto;
+	margin-top: 3% !important;
+	font-weight: bold;
+	text-align: center;
+}
+
+#error p
+{
+	margin: 0;
 }

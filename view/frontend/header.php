@@ -4,5 +4,5 @@
 	<a href="#">ACTU</a>
 	<a href="#">DOSSIERS</a>
 	<a href="#">FORUM</a>
-	<a href="index.php?action=login">SE CONNECTER / S'INSCRIRE</a>
+	<a href="index.php?action=loginview">SE CONNECTER / S'INSCRIRE</a>
 </header>

@@ -2,6 +2,7 @@
 
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
+require_once('model/MemberManager.php');
 
 function homePage()
 {
@@ -23,7 +24,21 @@ function readArticle($id)
 	require('view/frontend/readArticleView.php');
 }
 
-function login()
+function loginView($error)
 {
 	require('view/frontend/loginView.php');
+}
+
+function register($pseudo, $password1, $password2, $email)
+{
+	$memberManager = new \AchievementGet\Website\Model\MemberManager();
+
+	$stateQuery = $memberManager->verifyRegisterData($pseudo, $password1, $password2, $email);
+
+	if ($stateQuery == 0) {
+		header('Location: index.php');
+	}
+	else {
+		header('Location: index.php?action=loginview&error=' . $stateQuery);
+	}
 }
