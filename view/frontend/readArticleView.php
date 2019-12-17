@@ -12,9 +12,9 @@
 </div>
 
 <form action="" method="post" class="mt-5">
-	<p><label for="messageContent">Laisser un commentaire</label></p>
-	<p><textarea name="messageContent" placeholder=""></textarea></p>
-	<p><input type="submit" value="POSTER" class="button" /></p>
+	<label for="messageContent">Laisser un commentaire</label>
+	<textarea name="messageContent" placeholder="" required></textarea>
+	<input type="submit" value="POSTER" class="button" />
 </form>
 
 <?php

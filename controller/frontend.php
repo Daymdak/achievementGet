@@ -22,3 +22,8 @@ function readArticle($id)
 
 	require('view/frontend/readArticleView.php');
 }
+
+function login()
+{
+	require('view/frontend/loginView.php');
+}

@@ -6,6 +6,7 @@
 		<title><?= $title ?></title>
 		<link rel="icon" href="public/images/favicon.png">
 		<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/fontawesome/css/all.css" />
 		<link rel="stylesheet" type="text/css" href="public/css/style.css" />
 	</head>
 

@@ -47,8 +47,8 @@ header a:hover
 {
 	background-color: #EFEFEF;
 	box-shadow: 0px 0px 3px black;
-	padding: 1px 2% 1px 2%;
-	min-height: 100vh;
+	padding: 80px 2% 1px 2%;
+	min-height: 95vh;
 }
 
 footer
@@ -57,18 +57,17 @@ footer
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: 50px;
+	height: 5vh;
 	display: flex;
 	justify-content: center;
 	align-items: flex-end;
 	background-color: #222;
 	padding-right: 1%;
-	color: #444;
+	color: #fff;
 }
 
 #presentationText
 {
-	margin-top: 80px;
 	font-size: 14px;
 }
 
@@ -88,13 +87,13 @@ footer
 	overflow: hidden;
 	width: 32.5%;
 	position: relative;
+	transition: transform 0.3s;
 }
 
 .illustratedPost:hover
 {
-	transform: scale(1.1);
+	transform: scale(1.12);
 	z-index: 10;
-	transition-duration: 0.5s;
 }
 
 
@@ -111,12 +110,12 @@ figcaption
 	height: 33.33%;
 	background-color: rgba(0, 0, 0, 0.6);
 	opacity: 0;
+	transition: opacity 0.3s;
 }
 
 figure:hover figcaption
 {
 	opacity: 1;
-	transition-duration: 0.3s;
 }
 
 figcaption p
@@ -135,6 +134,7 @@ figcaption p
 #listLastPosts
 {
 	box-shadow: 0 0 3px black;
+	padding: 0;
 	background-color: #242424;
 }
 
@@ -151,15 +151,19 @@ figcaption p
 .post p
 {
 	margin: 0;
-	padding-top: 0.5%; 
+	width: 100%;
+	padding: 0.5% 1% 0 1%; 
 	height: 40px;
+}
+
+.post
+{
+	transition: all 0.2s;
 }
 
 .post:hover
 {
-	transform: scaleX(1.04);
 	background-color: #111;
-	transition-duration: 0.25s;
 }
 
 .categoryPost
@@ -222,21 +226,24 @@ figcaption p
 	margin-bottom: .9375rem;
 }
 
-form p, form p textarea
+form
 {
+	display: flex;
+	flex-direction: column;
 	width: 80%;
 	margin: 0 auto;
 }
 
-form .button
+.button
 {
 	background-color: #EFBB12;
 	border: none;
 	color: white;
 	font-weight: bold;
-	padding: 0.5% 3% 0.5% 3%;
-	border-radius: 5%;
+	padding: 1% 3% 1% 3%;
+	border-radius: 5px;
 	margin: 1% 0 5% 0;
+	width: 140px !important;
 }
 
 form .button:hover
@@ -249,4 +256,62 @@ form .button:hover
 	width: 80%;
 	margin: 0 auto;
 	margin-bottom: 1.5%;
+}
+
+.loginPanel
+{
+	background-color: #333;
+	box-shadow: 0 0 3px black;
+	margin: 0 auto;
+	margin-top: 5% !important;
+}
+
+.loginPanelTitle
+{
+	font-weight: bold;
+	color:#EFBB12;
+	font-size: 24px;
+	margin-left: 1%;
+}
+
+hr
+{
+	background-color: #EFBB12;
+	height: 1px;
+}
+
+.loginPanel form
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.logField
+{
+	width: 100%;
+}
+
+.logField label
+{
+	width: 45%;
+	color: white;
+	font-weight: bold;
+}
+
+.logField input
+{
+	width: 55%;
+}
+
+.loginPanel form .button
+{
+	margin-bottom: 3%;
+}
+
+.rememberMeCheckbox label
+{
+	color: white;
+	margin-left: 3px;
 }
