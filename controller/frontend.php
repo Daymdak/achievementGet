@@ -64,3 +64,17 @@ function unlog()
 
 	header('Location: index.php');
 }
+
+function addComment($id, $messageContent)
+{
+	$commentManager = new \AchievementGet\Website\Model\CommentManager();
+
+	$newComment = $commentManager->postComment($id, $messageContent);
+
+	if ($newComment === false) {
+		throw new Exception('Impossible d\'ajouter le commentaire !');
+	}
+	else {
+		header('Location: index.php?action=readarticle&id=' . $id);
+	}
+}

@@ -13,4 +13,13 @@ class CommentManager extends Manager
 
 		return $comments;
 	}
+
+	public function postComment($id, $messageContent)
+	{
+		$db = $this->dbConnect();
+		$comment = $db->prepare('INSERT INTO comments(post_id, author, comment, reports, comment_date) VALUES(?, ?, ?, 0, NOW())');
+		$newComment = $comment->execute(array($id, $_SESSION['pseudo'], $messageContent));
+
+		return $newComment;
+	}
 }

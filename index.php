@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+date_default_timezone_set('Europe/Paris');
+
 if (isset($_COOKIE['pseudo']) && isset($_COOKIE['password']))
 {
 	$_SESSION['pseudo'] = $_COOKIE['pseudo'];
@@ -37,6 +39,11 @@ try {
 		}
 		if ($_GET['action'] == 'unlog') {
 			unlog();
+		}
+		if ($_GET['action'] == 'addcomment') {
+			if (isset($_GET['id']) && $_GET['id'] > 0) {
+				addComment($_GET['id'], $_POST['messageContent']);
+			}
 		}
 	}
 	else {
