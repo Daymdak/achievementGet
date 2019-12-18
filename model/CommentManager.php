@@ -8,10 +8,20 @@ class CommentManager extends Manager
 	public function getPostComments($id)
 	{
 		$db = $this->dbConnect();
-		$comments = $db->prepare('SELECT id, author, comment, post_id, comment_date FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
+		$comments = $db->prepare('SELECT * FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
 		$comments->execute(array($id));
 
 		return $comments;
+	}
+
+	public function howMuchAuthorComments($author)
+	{
+		$db = $this->dbConnect();
+		$query = $db->prepare('SELECT COUNT(*) AS nbcomment FROM comments WHERE author = ?');
+		$query->execute(array($author));
+		$nbrComments = $query->fetch();
+
+		return $nbrComments['nbcomment'];
 	}
 
 	public function postComment($id, $messageContent)

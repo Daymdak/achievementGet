@@ -11,6 +11,10 @@ if (isset($_COOKIE['pseudo']) && isset($_COOKIE['password']))
 require('controller/frontend.php');
 
 try {
+	if (isset($_SESSION['pseudo']))
+	{
+		updateLastConnexion($_SESSION['pseudo']);
+	}
 	if (isset($_GET['action'])) {
 		if ($_GET['action'] == 'homepage') {
 			homePage();
@@ -25,10 +29,17 @@ try {
 			}
 		}
 		if ($_GET['action'] == 'loginview') {
-			if (isset($_GET['error']) && $_GET['error'] > 0)
-				loginView($_GET['error']);
+			if (!isset($_SESSION['pseudo']))
+			{
+				if (isset($_GET['error']) && $_GET['error'] > 0) {
+					loginView($_GET['error']);
+				}
+				else {
+					loginView(false);
+				}
+			}
 			else {
-				loginView(false);
+				homepage();
 			}
 		}
 		if ($_GET['action'] == 'login') {
@@ -44,6 +55,19 @@ try {
 			if (isset($_GET['id']) && $_GET['id'] > 0) {
 				addComment($_GET['id'], $_POST['messageContent']);
 			}
+		}
+		if ($_GET['action'] == 'userprofile') {
+			if (isset($_GET['user'])) {
+				if (isset($_GET['error']) && $_GET['error'] > 0) {
+					userProfile($_GET['user'], $_GET['error']);
+				}
+				else {
+					userprofile($_GET['user'], false);
+				}
+			}
+		}
+		if ($_GET['action'] == 'addprofileimage') {
+			checkImage($_FILES['newprofileimage']);
 		}
 	}
 	else {

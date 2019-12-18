@@ -78,3 +78,35 @@ function addComment($id, $messageContent)
 		header('Location: index.php?action=readarticle&id=' . $id);
 	}
 }
+
+function userProfile($user, $error)
+{
+	$memberManager = new \AchievementGet\Website\Model\MemberManager();
+	$commentManager = new \AchievementGet\Website\Model\CommentManager();
+
+	$memberInformation = $memberManager->getMemberInformation($user);
+	$nbrComments = $commentManager->howMuchAuthorComments($user);
+
+	require('view/frontend/userprofile.php');
+}
+
+function checkImage($image)
+{
+	$memberManager = new \AchievementGet\Website\Model\MemberManager();
+
+	$addImage = $memberManager->verifyProfileImage($image);
+
+	if ($addImage == 4) {
+		header('Location: index.php?action=userprofile');
+	}
+	else {
+		header('Location: index.php?action=userprofile&error=' . $addImage);
+	}
+}
+
+function updateLastConnexion($user)
+{
+	$memberManager = new \AchievementGet\Website\Model\MemberManager();
+
+	$memberManager->lastConnexion($user);
+}

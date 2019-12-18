@@ -1,7 +1,7 @@
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
-<img src="public/images/<?= $post['nameImage'] ?>" alt="<?= $post['title'] ?>" id="imagePost"/>
+<img src="public/images/postimages/<?= $post['nameImage'] ?>" alt="<?= $post['title'] ?>" id="imagePost"/>
 <div id="postBlock">
 	<div id="postText">
 		<h1><?= $post['title'] ?></h1>
@@ -25,8 +25,8 @@ if (isset($_SESSION['pseudo']))
 else
 {
 ?>
-	<div id="error" class="mb-3">
-		<p><i class="fas fa-times fa-2x"></i></p>
+	<div id="information" class="mb-3">
+		<p><i class="fas fa-info-circle fa-2x"></i></p>
 		<p>Il faut être connecter pour poster des commentaires.</p>
 	</div>
 <?php
@@ -61,7 +61,7 @@ while($comment = $comments->fetch())
 		    	if ($return['day'] == 1)
 		    		$timeSincePost = "hier";
 		    	else
-		    		$timeSincePost = "il y a " . $return['day'] . "jours";
+		    		$timeSincePost = "il y a " . $return['day'] . " jours";
 		    }
 		    elseif ($return['hour'] > 0 && $return['hour'] < 24)
 		    {
@@ -78,9 +78,9 @@ while($comment = $comments->fetch())
 		    		$timeSincePost = "il y a " . $return['minute'] . " minutes";
 		    }
 		?>
-		<p><strong><?= $comment['author']; ?></strong> <?= $timeSincePost ?></p>
+		<p><strong><a href="index.php?action=userprofile&user=<?= $comment['author'] ?>"><?= htmlspecialchars($comment['author']); ?> </a></strong> <?= $timeSincePost ?></p>
 		<hr />
-		<?= $comment['comment']; ?>
+		<?= htmlspecialchars($comment['comment']); ?>
 	</div>
 <?php
 }

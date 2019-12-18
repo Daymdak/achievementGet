@@ -2,13 +2,6 @@
 
 <?php ob_start(); ?>
 
-<?php
-if(isset($_SESSION['pseudo']))
-{
-	header('Location: index.php');
-}
-?>	
-
 <div class="loginPanel col-8 offset-2">
 	<p class="loginPanelTitle">Se connecter</p>
 	<hr />
@@ -25,7 +18,7 @@ if(isset($_SESSION['pseudo']))
 	{
 	?>
 		<div id="error">
-			<p><i class="fas fa-times fa-2x"></i></p>
+			<p><i class="fas fa-times-circle fa-2x"></i></p>
 			<p>Mauvais identifiant ou mot de passe !</p>
 		</div>
 	<?php
@@ -38,7 +31,7 @@ if(isset($_SESSION['pseudo']))
 	<form action="index.php?action=register" method="POST">
 		<p class="logField"><label for="pseudo">* Pseudo :</label><input type="text" name="pseudo" placeholder="Pseudo"  required /></p>
 		<p class="logField"><label for="pseudo">* Mot de passe :</label><input type="password" name="password1" placeholder="Mot de passe"  required /></p>
-		<p class="logField"><label for="pseudo">* Confirmation du mot de passe :</label><input type="password" name="password2" placeholder="Confirmation du mot de passe" required/></p>
+		<p class="logField"><label for="pseudo">* Confirmation :</label><input type="password" name="password2" placeholder="Confirmation du mot de passe" required/></p>
 		<p class="logField"><label for="pseudo">* Adresse e-mail :</label><input type="text" name="email" placeholder="Adresse e-mail" required /></p>
 		<input type="submit" value="INSCRIPTION" class="button" />
 	</form>
@@ -59,14 +52,14 @@ if(isset($_SESSION['pseudo']))
 			$error = "L'adresse email que vous avez fourni n'est pas valide.";
 		?>
 			<div id="error">
-				<p><i class="fas fa-times fa-2x"></i></p>
+				<p><i class="fas fa-times-circle fa-2x"></i></p>
 				<p><?= $error ?></p>
 			</div>
 		<?php
 	}
 ?>
 
-<div class="mt-5">
+<div class="mt-5" id="informationLogin">
 	<hr />
 	<p><em>* Informations obligatoires</em></p>
 	<p><em>Le pseudo que vous choississez doit faire entre 6 et 16 caractères.<br />
