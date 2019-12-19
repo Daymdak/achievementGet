@@ -88,6 +88,7 @@ footer
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	padding: 0;
 }
 
 .illustratedPost
@@ -101,7 +102,7 @@ footer
 
 .illustratedPost:hover
 {
-	transform: scale(1.12);
+	transform: scale(1.1);
 	z-index: 10;
 }
 
@@ -134,7 +135,7 @@ figcaption p
 	font-weight: bold;
 }
 
-#titleSection
+.titleSection
 {
 	font-weight: 900;
 	font-size: 22px;
@@ -414,6 +415,13 @@ p
 	text-align: justify;
 	padding: 1%;
 	overflow-y: scroll;
+}
+
+#commentImageProfile
+{
+	width: 7%;
+	border-radius: 50%;
+	margin-right: 2%;
 }
 
 /*#rightBlockProfile

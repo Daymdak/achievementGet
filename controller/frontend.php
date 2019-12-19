@@ -8,7 +8,7 @@ function homePage()
 {
 	$postManager = new \AchievementGet\Website\Model\PostManager();
 	$posts = $postManager->getFewPosts(0, 6);
-	$morePosts = $postManager->getFewPosts(0, 10);
+	$morePosts = $postManager->getFewPosts(6, 10);
 
 	require('view/frontend/homePageView.php');
 }
@@ -87,7 +87,7 @@ function userProfile($user, $error)
 	$memberInformation = $memberManager->getMemberInformation($user);
 	$nbrComments = $commentManager->howMuchAuthorComments($user);
 
-	require('view/frontend/userprofile.php');
+	require('view/frontend/userprofileview.php');
 }
 
 function checkImage($image)

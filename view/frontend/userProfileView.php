@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 <div class="row mt-2" id="profileHead">
 	<div class="col-2">
-		<img src="public/images/profileimageusers/<?= $memberInformation['profileImage'] ?>" id="profileImage"/>
+		<img src="public/images/profileimageusers/<?= $memberInformation['profileImage'] ?>" alt="<?= $memberInformation['pseudo'] ?>" id="profileImage"/>
 	</div>
 	<div class="col-10">
 		<h1><strong><?= htmlspecialchars($memberInformation['pseudo']) ?></strong></h1>
@@ -24,7 +24,7 @@
 		</div>
 </div>
 
-<div class="row profileInfos profileBio mt-5">
+<div class="row profileInfos profileBio mt-5 mb-5">
 	<h2>Biographie</h2>
 	<div class="col-12">
 		<hr />

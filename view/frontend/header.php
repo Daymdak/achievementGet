@@ -7,7 +7,7 @@
 	<?php
 		if(isset($_SESSION['pseudo'])) {
 		?>
-			<a href="index.php?action=userprofile&user=<?= $_SESSION['pseudo'] ?>"><?= $_SESSION['pseudo'] ?></a>
+			<a href="index.php?action=userprofile&user=<?= $_SESSION['pseudo'] ?>"><?= htmlspecialchars($_SESSION['pseudo']) ?></a>
 			<a href="index.php?action=unlog">Se déconnecter</a>
 		<?php
 		}

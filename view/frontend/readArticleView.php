@@ -59,7 +59,7 @@ while($comment = $comments->fetch())
 		    if ($return['day'] > 0) 
 		    {
 		    	if ($return['day'] == 1)
-		    		$timeSincePost = "hier";
+		    		$timeSincePost = "il y a " . $return['day'] . " jour";
 		    	else
 		    		$timeSincePost = "il y a " . $return['day'] . " jours";
 		    }
@@ -78,7 +78,7 @@ while($comment = $comments->fetch())
 		    		$timeSincePost = "il y a " . $return['minute'] . " minutes";
 		    }
 		?>
-		<p><strong><a href="index.php?action=userprofile&user=<?= $comment['author'] ?>"><?= htmlspecialchars($comment['author']); ?> </a></strong> <?= $timeSincePost ?></p>
+		<p><a href="index.php?action=userprofile&user=<?= $comment['author'] ?>"><img src="public/images/profileimageusers/<?= $comment['nameImage'] ?>" alt="<?= $comment['author'] ?>" id="commentImageProfile"/><strong><?= htmlspecialchars($comment['author']); ?> </a></strong> <?= $timeSincePost ?></p>
 		<hr />
 		<?= htmlspecialchars($comment['comment']); ?>
 	</div>
