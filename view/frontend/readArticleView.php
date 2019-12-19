@@ -1,11 +1,11 @@
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
-<img src="public/images/postimages/<?= $post['nameImage'] ?>" alt="<?= $post['title'] ?>" id="imagePost"/>
-<div id="postBlock">
-	<div id="postText">
+<img src="public/images/postimages/<?= $post['nameImage'] ?>" alt="<?= $post['title'] ?>" class="imagePost col-11"/>
+<div class="darkPanel mt-4 col-10 centerElement">
+	<div class="postText">
 		<h1><?= $post['title'] ?></h1>
-		<p id="metaDataPost">Publié le <?= $post['creation_date_fr'] ?> par <?= $post['author'] ?></p>
+		<p class="metaDataPost">Publié le <?= $post['creation_date_fr'] ?> par <?= $post['author'] ?></p>
 		<hr />
 		<p><?= $post['content'] ?></p>
 	</div>
@@ -15,17 +15,17 @@
 if (isset($_SESSION['pseudo']))
 {
 ?>
-	<form action="index.php?action=addcomment&amp;id= <?= $post['id'] ?>" method="post" class="mt-5">
+	<form action="index.php?action=addcomment&amp;id= <?= $post['id'] ?>" method="post" class="mt-5 centerElement col-10">
 		<label for="messageContent">Laisser un commentaire</label>
 		<textarea name="messageContent" placeholder="" required></textarea>
-		<input type="submit" value="POSTER" class="button" />
+		<input type="submit" value="POSTER" class="button transition centerElement white" />
 	</form>
 <?php
 }
 else
 {
 ?>
-	<div id="information" class="mb-3">
+	<div class="information centerElement mb-3">
 		<p><i class="fas fa-info-circle fa-2x"></i></p>
 		<p>Il faut être connecter pour poster des commentaires.</p>
 	</div>
@@ -35,7 +35,7 @@ else
 while($comment = $comments->fetch())
 {
 ?>
-	<div class="postComment">
+	<div class="postComment centerElement mb-3 darkPanel col-10">
 		<?php
 			$postDate = strtotime($comment['comment_date']);
 			$now = time();
@@ -78,7 +78,7 @@ while($comment = $comments->fetch())
 		    		$timeSincePost = "il y a " . $return['minute'] . " minutes";
 		    }
 		?>
-		<p><a href="index.php?action=userprofile&user=<?= $comment['author'] ?>"><img src="public/images/profileimageusers/<?= $comment['nameImage'] ?>" alt="<?= $comment['author'] ?>" id="commentImageProfile"/><strong><?= htmlspecialchars($comment['author']); ?> </a></strong> <?= $timeSincePost ?></p>
+		<p><a href="index.php?action=userprofile&user=<?= $comment['author'] ?>" class="yellow"><img src="public/images/profileimageusers/<?= $comment['nameImage'] ?>" alt="<?= $comment['author'] ?>" class="avatar col-1 mr-1"/><strong><?= htmlspecialchars($comment['author']); ?> </a></strong> <?= $timeSincePost ?></p>
 		<hr />
 		<?= htmlspecialchars($comment['comment']); ?>
 	</div>

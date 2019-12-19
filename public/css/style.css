@@ -1,70 +1,155 @@
+/*All the website*/
+
 @font-face {
 	font-family: 'OpenSans';
 	src: url('../font/OpenSans-Regular.ttf');
 }
 
-body
-{
-	background-color: #e9e9e9;
+body {
 	font-family: 'OpenSans';
+	background-color: #e9e9e9;
 }
 
-a, a:hover
-{
+a, a:hover {
 	text-decoration: none;
 }
 
-header
-{
-	height: 70px;
-	width: 100%;
-	position: fixed;
-	top: 0;
-	background-color: #222;
-	z-index: 30;
-	display: flex;
-	justify-content: space-around;
+p {
+	margin-bottom: 0;
 }
 
-header a
-{
-	text-transform: uppercase;
-	display: flex;
-	align-items: center;
-
+.centerElement {
+	margin: 0 auto;
 }
 
-header a
-{
-	color: #fff;
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+label {
 	font-weight: bold;
-	transition: all 0.2s;
 }
 
-header a:hover
-{
+.button:hover {
+	background-color: #DEAA01;
+}
+
+.yellow:hover, .yellow a:hover {
+	color: #DEAA01;
+}
+
+.white {
+	color: white;
+}
+
+.yellow, .yellow a {
 	color: #EFBB12;
 }
 
-#logo
-{
-	width: 210px;
+.transition {
+	transition: all 0.2s;
 }
 
-.container
-{
+hr {
+	background-color: #EFBB12;
+	height: 1px;
+}
+
+.container {
 	background-color: #EFEFEF;
 	box-shadow: 0px 0px 3px black;
 	padding: 80px 2% 1px 2%;
 	min-height: 95vh;
 }
 
-footer
+.avatar {
+	padding: 0;
+	border-radius: 50%;
+	box-shadow: 0 0 3px black;
+}
+
+.darkPanel {
+	background-color: #333;
+	box-shadow: 0 0 3px black;
+	padding: 1%;
+	color: #fff;
+}
+
+.button {
+	background-color: #EFBB12;
+	border: none;
+	font-weight: bold;
+	padding: 1% 3% 1% 3%;
+	border-radius: 5px;
+	margin-top: 1% !important;
+	margin-bottom: 5% !important;
+}
+
+.error {
+	background: #EFCAD0;
+	padding: 1%;
+	border-radius: 5px;
+	border: 1px solid red;
+	margin-top: 1% !important;
+	margin-bottom: 1% !important;
+	color: #000;
+	font-weight: bold;
+	text-align: center;
+	box-shadow: 0 0 2px black;
+}
+
+.information {
+	background: #FDEFE1;
+	padding: 1%;
+	border-radius: 5px;
+	border: 1px solid #EFBB12;
+	margin-top: 3% !important;
+	font-weight: bold;
+	text-align: center;
+	box-shadow: 0 0 2px black;
+}
+
+p textarea
 {
+	height: 200px;
+}
+
+/*En-tête */
+
+header {
+	position: fixed;
+	top: 0;
+	z-index: 30;
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	height: 70px;
+	background-color: #222;
+}
+
+header a {
+	display: flex;
+	color: #fff;
+	font-weight: bold;
+	align-items: center;
+	text-transform: uppercase;
+}
+
+header a:hover, .listLastPosts a:hover {
+	color: #EFBB12;
+}
+
+.logo {
+	width: 210px;
+}
+
+/*Footer*/
+
+footer {
 	position: relative;
 	bottom: 0;
 	left: 0;
-	width: 100%;
 	height: 5vh;
 	display: flex;
 	justify-content: center;
@@ -74,375 +159,153 @@ footer
 	color: #fff;
 }
 
-#presentationText
-{
-	font-size: 14px;
-	text-align: justify;
-}
+/*Home Page */
 
-#slider
-{
+.slider {
 	height: 400px;
-	width: 100%;
-	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
 	padding: 0;
 }
 
-.illustratedPost
-{
+.illustratedPost {
 	box-shadow: 0 0 3px black;
 	overflow: hidden;
 	width: 32.5%;
 	position: relative;
-	transition: transform 0.3s;
 }
 
-.illustratedPost:hover
-{
+.presentationText {
+	font-size: 14px;
+	text-align: justify;
+}
+
+.titleSection {
+	font-weight: 900;
+	font-size: 22px;
+}
+
+.illustratedPost:hover {
 	transform: scale(1.1);
 	z-index: 10;
 }
 
-
-.illustratedPost img
-{
+.illustratedPost img {
 	height: 200px;
 }
 
-figcaption
-{
+figcaption {
 	position: absolute;
 	bottom: 0px;
 	width: 100%;
 	height: 33.33%;
 	background-color: rgba(0, 0, 0, 0.6);
 	opacity: 0;
-	transition: opacity 0.3s;
 }
 
-figure:hover figcaption
-{
-	opacity: 1;
-}
-
-figcaption p
-{
-	margin-left: 5px;
-	color: white;
+figcaption p {
 	font-weight: bold;
 }
 
-.titleSection
-{
-	font-weight: 900;
-	font-size: 22px;
+figure:hover figcaption {
+	opacity: 1;
 }
 
-#listLastPosts
-{
-	box-shadow: 0 0 3px black;
-	padding: 0;
-	background-color: #333;
+.listLastPosts {
+	padding: 0 !important;
 }
 
-#listLastPosts a
-{
+.listLastPosts a {
 	color: #fff;
 }
 
-#listLastPosts a:hover
-{
-	color: #EFBB12;
-}
-
-.post p
-{
+.post p {
 	margin: 0;
-	width: 100%;
 	padding: 0.5% 1% 0 1%; 
 	height: 40px;
 }
 
-.post
-{
-	transition: all 0.2s;
-}
-
-.post:hover
-{
+.post:hover {
 	background-color: #191919;
 }
 
-.categoryPost
-{
+.categoryPost {
 	display: inline-block;
-	color: #EFBB12;
-	width: 20%;
 }
 
-.dateInListPost
-{
+.dateInListPost {
 	color: #fff;
 }
 
-#postBlock
-{
-	width: 80%;
-	margin: 0 auto;
-	margin-top: 20px !important;
-	background-color: #333;
-	box-shadow: 0 0 5px black;
-	color: #fff;
+/*Read Article*/
+
+.imagePost {
+	box-shadow: 0 0 4px black;
+	padding: 0;
+	position: relative;
+	left: 5%;
 }
 
-#postText
-{
+.postText {
 	text-align: justify;
 	padding: 3% 10% 5% 10%;
 	font-size: 18px;
 }
 
-#postText h1
-{
+.postText h1 {
 	color: #EFBB12;
 	font-weight: bold;
 	text-transform: uppercase;
 	font-size: 34px;
 }
 
-#imagePost
-{
-	width: 90%;
-	box-shadow: 0 0 4px black;
-	position: relative;
-	left: 5%;
-}
-
-#metaDataPost
-{
+.metaDataPost {
 	font-size: 16px;
 	color: #CCC;
 }
 
-form
-{
-	display: flex;
-	flex-direction: column;
-	width: 80%;
-	margin: 0 auto;
-}
+/*Login/Register Page*/
 
-.button
-{
-	background-color: #EFBB12;
-	border: none;
-	color: white;
+.loginPanelTitle {
 	font-weight: bold;
-	padding: 1% 3% 1% 3%;
-	border-radius: 5px;
-	margin: 1% 0 5% 0;
-	width: 140px !important;
-	transition: all 0.2s;
-}
-
-form .button:hover
-{
-	background-color: #DEAA01;
-}
-
-.postComment
-{
-	width: 80%;
-	margin: 0 auto;
-	margin-bottom: 1.5%;
-	background-color: #fff;
-	border: .0625rem solid #d5d5d5;
-	padding: 1%;
-	margin-bottom: .9375rem;
-}
-
-.postComment a
-{
-	color: #333;
-}
-
-.loginPanel
-{
-	background-color: #333;
-	box-shadow: 0 0 3px black;
-	margin: 0 auto;
-	margin-top: 5% !important;
-}
-
-.loginPanelTitle
-{
-	font-weight: bold;
-	color:#EFBB12;
+	color: #EFBB12;
 	font-size: 24px;
 	margin-left: 1%;
 }
 
-hr
-{
-	background-color: #EFBB12;
-	height: 1px;
-}
-
-.loginPanel form
-{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-.logField
-{
-	width: 100%;
-}
-
-.logField label
-{
-	width: 45%;
-	color: white;
-	font-weight: bold;
-}
-
-.logField input
-{
-	width: 55%;
-}
-
-.loginPanel form .button
-{
-	margin-bottom: 3%;
-}
-
-.rememberMeCheckbox label
-{
-	color: white;
-	margin-left: 3px;
-}
-
-#informationLogin
-{
+.informationLogin {
 	font-size: 14px;
 }
 
-#error
-{
-	background: #EFCAD0;
-	width: 30%;
-	padding: 1%;
-	border-radius: 5px;
-	border: 1px solid red;
-	margin: 0 auto;
-	margin-top: 3% !important;
-	font-weight: bold;
-	text-align: center;
-	box-shadow: 0 0 2px black;
-}
+/*Profile*/
 
-#information
-{
-	background: #FDEFE1;
-	width: 30%;
-	padding: 1%;
-	border-radius: 5px;
-	border: 1px solid #EFBB12;
-	margin: 0 auto;
-	margin-top: 3% !important;
-	font-weight: bold;
-	text-align: center;
-	box-shadow: 0 0 2px black;
-}
-
-p
-{
-	margin-bottom: 0;
-}
-
-#profileHead
-{
-	background-color: #333;
-	padding: 1%;
+.profileHead {
 	color: #fff;
-	box-shadow: 0 0 3px black;
 	display: flex;
 	align-items: center;
 }
 
-#profileImage
-{
-	width: 100%;
-	border-radius: 50%;
-	box-shadow: 0 0 3px black;
-}
-
-.profileInfos
-{
-	background-color: #333;
-	box-shadow: 0 0 3px black;
-	color: #fff;
-	padding: 1%;
+.profileInfos {
 	display: flex;
 	flex-direction: column;
 }
 
-.profileInfos div p strong
-{
+.profileBio {
+	display: flex;
+	flex-direction: column;
+}
+
+.profileInfos div p strong {
 	display: inline-block;
-	width: 50%;
 }
 
-.profileBio
-{
-	display: flex;
-	flex-direction: column;
-}
-
-.profileBio div p
-{
+.profileBio div p {
 	height: 200px;
-	width: 100%;
 	background-color: white;
 	box-shadow: 0 0 3px black;
 	color: #000;
-	margin-bottom: 30px;
 	text-align: justify;
 	padding: 1%;
 	overflow-y: scroll;
-}
-
-#commentImageProfile
-{
-	width: 7%;
-	border-radius: 50%;
-	margin-right: 2%;
-}
- 
-#changeData
-{
-	color: #EFBB12;
-	transition: all 0.2s;
-}
-
-#changeData:hover
-{
-	color: #DEAA01;
-}
-
-p textarea
-{
-	width: 100%;
-	height: 200px;
-}
-
-.error_image
-{
-	width: 100% !important;
-	color: #000;
 }

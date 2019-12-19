@@ -2,14 +2,14 @@
 
 <?php ob_start(); ?>
 
-<div class="loginPanel col-8 offset-2">
+<div class="loginPanel mt-5 col-8 offset-2 darkPanel">
 	<p class="loginPanelTitle">Se connecter</p>
 	<hr />
-	<form action="index.php?action=login" method="POST">
-		<p class="logField"><label for="pseudo">* Pseudo :</label><input type="text" name="pseudo" placeholder="Pseudo"  required/></p>
-		<p class="logField"><label for="password">* Mot de passe :</label><input type="password" name="password" placeholder="Mot de passe"  required/></p>
-		<p class="rememberMeCheckbox"><input type="checkbox" name="rememberMe" /><label for="rememberMe">Se souvenir de moi</label></p>
-		<input type="submit" value="CONNEXION" class="button"/>
+	<form action="index.php?action=login" method="POST" class="centerElement">
+		<p class="logField"><label for="pseudo" class="col-5">* Pseudo :</label><input type="text" name="pseudo" placeholder="Pseudo" class="col-7" required/></p>
+		<p class="logField"><label for="password" class="col-5">* Mot de passe :</label><input type="password" name="password" placeholder="Mot de passe" class="col-7" required/></p>
+		<p class="rememberMeCheckbox centerElement"><input type="checkbox" name="rememberMe" /><label for="rememberMe" class="ml-1">Se souvenir de moi</label></p>
+		<input type="submit" value="CONNEXION" class="button transition centerElement white" />
 	</form>
 </div>
 
@@ -17,7 +17,7 @@
 	if($error == 6)
 	{
 	?>
-		<div id="error">
+		<div class="error centerElement">
 			<p><i class="fas fa-times-circle fa-2x"></i></p>
 			<p>Mauvais identifiant ou mot de passe !</p>
 		</div>
@@ -25,15 +25,15 @@
 	}
 ?>
 
-<div class="loginPanel col-8 offset-2">
+<div class="loginPanel darkPanel mt-5 col-8 offset-2">
 	<p class="loginPanelTitle">S'inscrire</p>
 	<hr />
-	<form action="index.php?action=register" method="POST">
-		<p class="logField"><label for="pseudo">* Pseudo :</label><input type="text" name="pseudo" placeholder="Pseudo"  required /></p>
-		<p class="logField"><label for="pseudo">* Mot de passe :</label><input type="password" name="password1" placeholder="Mot de passe"  required /></p>
-		<p class="logField"><label for="pseudo">* Confirmation :</label><input type="password" name="password2" placeholder="Confirmation du mot de passe" required/></p>
-		<p class="logField"><label for="pseudo">* Adresse e-mail :</label><input type="email" name="email" placeholder="Adresse e-mail" required /></p>
-		<input type="submit" value="INSCRIPTION" class="button" />
+	<form action="index.php?action=register" method="POST" class="centerElement">
+		<p class="logField"><label for="pseudo" class="col-5">* Pseudo :</label><input type="text" name="pseudo" placeholder="Pseudo" class="col-7" required /></p>
+		<p class="logField"><label for="pseudo" class="col-5">* Mot de passe :</label><input type="password" name="password1" placeholder="Mot de passe" class="col-7" required /></p>
+		<p class="logField"><label for="pseudo" class="col-5">* Confirmation :</label><input type="password" name="password2" placeholder="Confirmation du mot de passe" class="col-7" required/></p>
+		<p class="logField"><label for="pseudo" class="col-5">* Adresse e-mail :</label><input type="email" name="email" placeholder="Adresse e-mail" class="col-7" required /></p>
+		<input type="submit" value="INSCRIPTION" class="button transition centerElement white" />
 	</form>
 </div>
 
@@ -51,7 +51,7 @@
 		elseif ($error == 5)
 			$error = "L'adresse email que vous avez fourni n'est pas valide.";
 		?>
-			<div id="error">
+			<div class="error centerElement">
 				<p><i class="fas fa-times-circle fa-2x"></i></p>
 				<p><?= $error ?></p>
 			</div>
@@ -59,7 +59,7 @@
 	}
 ?>
 
-<div class="mt-5" id="informationLogin">
+<div class="mt-5 informationLogin">
 	<hr />
 	<p><em>* Informations obligatoires</em></p>
 	<p><em>Le pseudo que vous choississez doit faire entre 6 et 16 caractères.<br />

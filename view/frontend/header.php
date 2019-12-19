@@ -1,14 +1,13 @@
 <header>
-	<a href="index.php"><img src="public/images/logo.png" alt="achievementget official logo" id="logo" /></a>
-	<a href="#"><p>Test</p></a>
-	<a href="#">Actu</a>
-	<a href="#">Dossiers</a>
-	<a href="#">Forum</a>
+	<a href="index.php"><img src="public/images/logo.png" alt="achievementget official logo" class="logo" /></a>
+	<a href="#" class="transition">Test</a>
+	<a href="#" class="transition">Actu</a>
+	<a href="#" class="transition">Dossiers</a>
+	<a href="#" class="transition">Forum</a>
 	<?php
 		if(isset($_SESSION['pseudo'])) {
 		?>
-			<a href="index.php?action=userprofile&user=<?= $_SESSION['pseudo'] ?>"><?= htmlspecialchars($_SESSION['pseudo']) ?></a>
-			<a href="index.php?action=unlog">Se déconnecter</a>
+			<a href="index.php?action=userprofile&user=<?= $_SESSION['pseudo'] ?>" class="transition"><?= htmlspecialchars($_SESSION['pseudo']) ?></a>
 		<?php
 		}
 		else {

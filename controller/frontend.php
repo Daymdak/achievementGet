@@ -96,7 +96,7 @@ function changeDataUser($user, $error)
 
 	$memberInformation = $memberManager->getMemberInformation($user);
 
-	require('view/frontend/changedatauser.php');
+	require('view/frontend/changedatauserview.php');
 }
 
 function updateDataUser($firstname, $name, $country, $phone, $birthdate, $gender, $bio, $user) {
