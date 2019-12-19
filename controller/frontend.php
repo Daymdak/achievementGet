@@ -79,7 +79,7 @@ function addComment($id, $messageContent)
 	}
 }
 
-function userProfile($user, $error)
+function userProfile($user)
 {
 	$memberManager = new \AchievementGet\Website\Model\MemberManager();
 	$commentManager = new \AchievementGet\Website\Model\CommentManager();
@@ -90,7 +90,7 @@ function userProfile($user, $error)
 	require('view/frontend/userprofileview.php');
 }
 
-function changeDataUser($user)
+function changeDataUser($user, $error)
 {
 	$memberManager = new \AchievementGet\Website\Model\MemberManager();
 
@@ -111,6 +111,20 @@ function updateDataUser($firstname, $name, $country, $phone, $birthdate, $gender
 		header('Location: index.php?action=changedatauser&user=' . $user);
 	}
 }
+
+function updatePassword($exPassword, $newPassword, $newPassword2, $user) {
+	$memberManager = new \AchievementGet\Website\Model\MemberManager();
+
+	$updatePasswordUser = $memberManager->updatePasswordUser($exPassword, $newPassword, $newPassword2, $user);
+
+	if ($updatePasswordUser == 4) {
+		header('Location: index.php?action=changedatauser&user=' . $user);
+	}
+	else {
+		header('Location: index.php?action=changedatauser&user=' . $user . '&error=' . $updatePasswordUser);
+	}
+}
+
 function checkImage($image)
 {
 	$memberManager = new \AchievementGet\Website\Model\MemberManager();
@@ -118,10 +132,10 @@ function checkImage($image)
 	$addImage = $memberManager->verifyProfileImage($image);
 
 	if ($addImage == 4) {
-		header('Location: index.php?action=userprofile');
+		header('Location: index.php?action=changedatauser&user=' . $_SESSION['pseudo']);
 	}
 	else {
-		header('Location: index.php?action=userprofile&error=' . $addImage);
+		header('Location: index.php?action=changedatauser&user=' . $_SESSION['pseudo'] . '&error=' . $addImage);
 	}
 }
 

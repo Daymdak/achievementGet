@@ -441,30 +441,8 @@ p textarea
 	height: 200px;
 }
 
-/*#rightBlockProfile
-{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-#rightBlockProfile #error
+.error_image
 {
 	width: 100% !important;
-	margin-bottom: 10px;
+	color: #000;
 }
-
-#rightBlockProfile form
-{
-	width: 100%;
-}
-
-#infoProfileImage
-{
-	font-size: 12px;
-	text-align: justify;
-	width: 100%;
-}
-
-*/

@@ -129,7 +129,6 @@ class MemberManager extends Manager
 		if (empty($birthdate)) {
 			$birthdate = NULL;
 		}
-
 		if (empty($phone)) {
 			$phone = NULL;
 		}
@@ -147,6 +146,42 @@ class MemberManager extends Manager
 		));
 
 		$query->closeCursor();
+	}
+
+	function updatePasswordUser($exPassword, $newPassword, $newPassword2, $user)
+	{
+		$db = $this->dbConnect();
+		$query = $db->prepare('SELECT password FROM members WHERE pseudo = :pseudo');
+		$query->execute(array(
+			'pseudo' => $user
+		));
+		$result = $query->fetch();
+		$query->closeCursor();
+
+		$verifyPassword = password_verify($exPassword, $result['password']);
+
+		if($verifyPassword)
+		{
+			if ($newPassword === $newPassword2)
+			{
+				if(preg_match("#^[\S]{6,16}$#", $newPassword))
+				{
+					$query = $db->prepare('UPDATE members SET password = :password WHERE pseudo = :pseudo');
+					$query->execute(array(
+						'password' => password_hash($newPassword, PASSWORD_DEFAULT),
+						'pseudo' => $user
+					));
+					return 4;
+				}
+				else
+					return 7;
+			}
+			else
+				return 6;
+		}
+		else
+			return 5;
+
 	}
 
 	function lastConnexion($user)

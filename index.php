@@ -61,12 +61,7 @@ try {
 		}
 		if ($_GET['action'] == 'userprofile') {
 			if (isset($_GET['user'])) {
-				if (isset($_GET['error']) && $_GET['error'] > 0) {
-					userProfile($_GET['user'], $_GET['error']);
-				}
-				else {
-					userprofile($_GET['user'], false);
-				}
+					userProfile($_GET['user']);
 			}
 			else {
 				throw new Exception('Aucun nom d\'utilisateur envoyé.');
@@ -74,7 +69,13 @@ try {
 		}
 		if ($_GET['action'] == 'changedatauser') {
 			if (isset($_GET['user'])) {
-				changeDataUser($_GET['user']);
+				if (isset($_GET['error']) && $_GET['error'] > 0)
+				{
+					changeDataUser($_GET['user'], $_GET['error']);
+				}
+				else {
+					changeDataUser($_GET['user'], false);
+				}
 			}
 			else {
 				throw new Exception('Aucun nom d\'utilisateur envoyé.');
@@ -89,6 +90,15 @@ try {
 				throw new Exception('Aucun nom d\'utilisateur envoyé.');
 			}
 			
+		}
+		if ($_GET['action'] == 'updatepassword') {
+			if (isset($_GET['user']))
+			{
+				updatePassword($_POST['exPassword'], $_POST['newPassword'], $_POST['newPassword2'], $_GET['user']);
+			}
+			else {
+				throw new Exception('Aucun nom d\'utilisateur envoyé.');
+			}
 		}
 		if ($_GET['action'] == 'addprofileimage') {
 			checkImage($_FILES['newprofileimage']);
