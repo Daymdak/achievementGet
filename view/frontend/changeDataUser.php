@@ -26,22 +26,40 @@ if($memberInformation['pseudo'] == $_SESSION['pseudo']) {
 	<div class="col-12">
 		<hr />
 		<form action="index.php?action=updatedatauser&user=<?= $_SESSION['pseudo'] ?>" method="POST">
-			<p><strong><label for="">Changer le prénom :</label></strong><input type="text" name="firstname" placeholder="Non renseigné" value="<?= $memberInformation['firstname'] ?>" /></p>
-			<p><strong><label for="">Changer le nom :</label></strong><input type="text" name="name" placeholder="Non renseigné" value="<?= $memberInformation['name'] ?>" /></p>
-			<p><strong><label for="">Changer le pays :</label></strong><input type="text" name="country" placeholder="Non renseigné" value="<?= $memberInformation['country'] ?>" /></p>
-			<p><strong><label for="">Changer le numéro de téléphone :</label></strong><input type="tel" name="phone" placeholder="Non renseigné" value="<?= $memberInformation['phone'] ?>" maxlength="10" /></p>
-			<p><strong><label for="">Changer la date de naissance :</label></strong><input type="date" name="birthdate" /></p>
-			<p><strong><label for="">Changer le genre :</label></strong>
-				<select name="gender" value="<?= $memberInformation['gender'] ?>">
-					<option value="Homme">Homme</option>
-					<option value="Femme">Femme</option>
-					<option value="Autre">Autre</option>
+			<p><strong><label for="firstname">Changer le prénom :</label></strong><input type="text" name="firstname" placeholder="Non renseigné" value="<?= $memberInformation['firstname'] ?>" /></p>
+			<p><strong><label for="name">Changer le nom :</label></strong><input type="text" name="name" placeholder="Non renseigné" value="<?= $memberInformation['name'] ?>" /></p>
+			<p><strong><label for="country">Changer le pays :</label></strong><input type="text" name="country" placeholder="Non renseigné" value="<?= $memberInformation['country'] ?>" /></p>
+			<p><strong><label for="phone">Changer le numéro de téléphone :</label></strong><input type="tel" name="phone" placeholder="Non renseigné" value="<?= $memberInformation['phone'] ?>" maxlength="10" /></p>
+			<p><strong><label for="birthdate">Changer la date de naissance :</label></strong><input type="date" name="birthdate" value="<?= $memberInformation['default_birthdate'] ?>"/></p>
+			<p><strong><label for="gender">Changer le genre :</label></strong>
+				<select name="gender">
+					<option value="Homme"
+					<?php
+						if ($memberInformation['gender'] == "Homme")
+							echo 'selected="selected"';
+					?>
+					>Homme</option>
+					<option value="Femme"
+					<?php
+						if ($memberInformation['gender'] == "Femme")
+							echo 'selected="selected"';
+					?>
+					>Femme</option>
+					<option value="Non renseigné" 
+					<?php
+						if ($memberInformation['gender'] == "Non renseigné")
+							echo 'selected="selected"';
+					?>
+					>Non renseigné</option>
 				</select>
 			</p>
+			<p><strong><label for="bio">Changer la biographie :</label></strong><p>
+			<p><textarea name="bio"><?= $memberInformation['bio'] ?></textarea></p>
 			<input type="submit" value="CHANGER" class="button" />
 		</form>
 	</div>
 </div>
+
 <?php
 }
 else {

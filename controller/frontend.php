@@ -99,10 +99,10 @@ function changeDataUser($user)
 	require('view/frontend/changedatauser.php');
 }
 
-function updateDataUser($firstname, $name, $country, $phone, $birthdate, $gender, $user) {
+function updateDataUser($firstname, $name, $country, $phone, $birthdate, $gender, $bio, $user) {
 	$memberManager = new \AchievementGet\Website\Model\MemberManager();
 
-	$updateData = $memberManager->changeData($firstname, $name, $country, $phone, $birthdate, $gender, $user);
+	$updateData = $memberManager->changeData($firstname, $name, $country, $phone, $birthdate, $gender, $bio, $user);
 
 	if ($updateData === false) {
 		throw new Exception('Impossible de mettre à jour le profil');

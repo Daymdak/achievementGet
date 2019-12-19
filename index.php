@@ -83,7 +83,7 @@ try {
 		if ($_GET['action'] == 'updatedatauser') {
 			if (isset($_GET['user']))
 			{
-				updateDataUser($_POST['firstname'], $_POST['name'], $_POST['country'], $_POST['phone'], $_POST['birthdate'], $_POST['gender'], $_GET['user']);
+				updateDataUser($_POST['firstname'], $_POST['name'], $_POST['country'], $_POST['phone'], $_POST['birthdate'], $_POST['gender'], $_POST['bio'], $_GET['user']);
 			}
 			else {
 				throw new Exception('Aucun nom d\'utilisateur envoyé.');
