@@ -8,7 +8,7 @@ class MemberManager extends Manager
 	function getMemberInformation($pseudo)
 	{
 		$db = $this->dbConnect();
-		$query = $db->prepare('SELECT id, profileImage, pseudo, password, email, DATE_FORMAT(inscription_date, \'%d/%m/%Y\') as inscription_date_fr, DATE_FORMAT(birthdate, \'%d/%m/%Y\') as birthdate_fr, gender, country, DATE_FORMAT(last_connexion, \'%d/%m/%Y\') as last_connexion_fr, bio FROM members WHERE pseudo = :pseudo');
+		$query = $db->prepare('SELECT id, profileImage, pseudo, password, email, phone, DATE_FORMAT(inscription_date, \'%d/%m/%Y\') as inscription_date_fr, name, firstname,DATE_FORMAT(birthdate, \'%d/%m/%Y\') as birthdate_fr, gender, country, DATE_FORMAT(last_connexion, \'%d/%m/%Y\') as last_connexion_fr, bio FROM members WHERE pseudo = :pseudo');
 		$query->execute(array(
 			'pseudo' => $pseudo
 		));
@@ -122,6 +122,21 @@ class MemberManager extends Manager
 		}
 		else
 			return 1;
+	}
+
+	function changeData($firstname, $name, $country, $phone, $birthdate, $gender, $user)
+	{
+		$db = $this->dbConnect();
+		$query = $db->prepare('UPDATE members SET firstname = :firstname, name = :name, country = :country, phone = :phone, birthdate = :birthdate, gender = :gender WHERE pseudo = :user');
+		$query->execute(array(
+			'firstname' => $firstname,
+			'name' => $name,
+			'country' => $country,
+			'phone' => $phone,
+			'birthdate' => $birthdate,
+			'gender' => $gender,
+			'user' => $user
+		));
 	}
 
 	function lastConnexion($user)

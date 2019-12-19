@@ -55,6 +55,9 @@ try {
 			if (isset($_GET['id']) && $_GET['id'] > 0) {
 				addComment($_GET['id'], $_POST['messageContent']);
 			}
+			else {
+				throw new Exception('Aucun identifiant de billet envoyé');
+			}
 		}
 		if ($_GET['action'] == 'userprofile') {
 			if (isset($_GET['user'])) {
@@ -65,6 +68,27 @@ try {
 					userprofile($_GET['user'], false);
 				}
 			}
+			else {
+				throw new Exception('Aucun nom d\'utilisateur envoyé.');
+			}
+		}
+		if ($_GET['action'] == 'changedatauser') {
+			if (isset($_GET['user'])) {
+				changeDataUser($_GET['user']);
+			}
+			else {
+				throw new Exception('Aucun nom d\'utilisateur envoyé.');
+			}
+		}
+		if ($_GET['action'] == 'updatedatauser') {
+			if (isset($_GET['user']))
+			{
+				updateDataUser($_POST['firstname'], $_POST['name'], $_POST['country'], $_POST['phone'], $_POST['birthdate'], $_POST['gender'], $_GET['user']);
+			}
+			else {
+				throw new Exception('Aucun nom d\'utilisateur envoyé.');
+			}
+			
 		}
 		if ($_GET['action'] == 'addprofileimage') {
 			checkImage($_FILES['newprofileimage']);

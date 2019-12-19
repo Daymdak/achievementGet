@@ -423,6 +423,17 @@ p
 	border-radius: 50%;
 	margin-right: 2%;
 }
+ 
+#changeData
+{
+	color: #EFBB12;
+	transition: all 0.2s;
+}
+
+#changeData:hover
+{
+	color: #DEAA01;
+}
 
 /*#rightBlockProfile
 {

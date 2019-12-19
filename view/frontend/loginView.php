@@ -32,7 +32,7 @@
 		<p class="logField"><label for="pseudo">* Pseudo :</label><input type="text" name="pseudo" placeholder="Pseudo"  required /></p>
 		<p class="logField"><label for="pseudo">* Mot de passe :</label><input type="password" name="password1" placeholder="Mot de passe"  required /></p>
 		<p class="logField"><label for="pseudo">* Confirmation :</label><input type="password" name="password2" placeholder="Confirmation du mot de passe" required/></p>
-		<p class="logField"><label for="pseudo">* Adresse e-mail :</label><input type="text" name="email" placeholder="Adresse e-mail" required /></p>
+		<p class="logField"><label for="pseudo">* Adresse e-mail :</label><input type="email" name="email" placeholder="Adresse e-mail" required /></p>
 		<input type="submit" value="INSCRIPTION" class="button" />
 	</form>
 </div>

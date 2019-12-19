@@ -90,6 +90,27 @@ function userProfile($user, $error)
 	require('view/frontend/userprofileview.php');
 }
 
+function changeDataUser($user)
+{
+	$memberManager = new \AchievementGet\Website\Model\MemberManager();
+
+	$memberInformation = $memberManager->getMemberInformation($user);
+
+	require('view/frontend/changedatauser.php');
+}
+
+function updateDataUser($firstname, $name, $country, $phone, $birthdate, $gender, $user) {
+	$memberManager = new \AchievementGet\Website\Model\MemberManager();
+
+	$updateData = $memberManager->changeData($firstname, $name, $country, $phone, $birthdate, $gender, $user);
+
+	if ($updateData === false) {
+		throw new Exception('Impossible de mettre à jour le profil');
+	}
+	else {
+		header('Location: index.php?action=changedatauser&user=' . $user);
+	}
+}
 function checkImage($image)
 {
 	$memberManager = new \AchievementGet\Website\Model\MemberManager();
