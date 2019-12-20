@@ -103,6 +103,52 @@ try {
 		if ($_GET['action'] == 'addprofileimage') {
 			checkImage($_FILES['newprofileimage']);
 		}
+		if ($_GET['action'] == 'showArticles') {
+			if (isset($_GET['type'])) {
+				if (isset($_GET['page']) && $_GET['page'] > 0) {
+					showArticles($_GET['page'], $_GET['type']);
+				}
+				else {
+					throw new Exception('Aucun numéro de page renseigné.');
+				}
+			}
+			else {
+				throw new Exception('Aucun type d\'article renseigné.');
+			}
+		}
+		if ($_GET['action'] == 'forum') {
+			if (isset($_GET['page']) && $_GET['page'] > 0) {
+				forumView($_GET['page']);
+			}
+			else {
+				throw new Exception('Aucun numéro de page renseigné.');
+			}
+		}
+		if ($_GET['action'] == 'addTopic') {
+			addTopic($_SESSION['pseudo'], $_POST['topicTitle'], $_POST['topicContent']);
+		}
+		if ($_GET['action'] == 'topic') {
+			if (isset($_GET['id']) && $_GET['id'] > 0)
+			{
+				if (isset($_GET['page']) && $_GET['page'] > 0) {
+					topicView($_GET['id'], $_GET['page']);
+				}
+				else {
+					throw new Exception('Aucun numéro de page renseigné.');
+				}
+			}
+			else {
+				throw new Exception('Aucun identifiant de sujet renseigné.');
+			}
+		}
+		if ($_GET['action'] == 'addMessage') {
+			if (isset($_GET['id'])) {
+				addMessage($_GET['id'], $_POST['message'], $_SESSION['pseudo']);
+			}
+			else {
+				throw new Exception('Aucun identifiant de sujet renseigné.');
+			}
+		}
 	}
 	else {
 		homePage();

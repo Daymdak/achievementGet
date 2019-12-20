@@ -6,7 +6,7 @@
 </div>
 <div class="mt-3">
 	<p class="titleSection">Les derniers articles !</p>
-	<div class="col-12 mt-2 slider">
+	<div class="mt-2 slider">
 		<?php
 		while($data = $posts->fetch())
 		{

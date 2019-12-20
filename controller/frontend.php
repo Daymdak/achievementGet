@@ -3,6 +3,8 @@
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/MemberManager.php');
+require_once('model/TopicManager.php');
+require_once('model/MessagesForumManager.php');
 
 function homePage()
 {
@@ -144,4 +146,73 @@ function updateLastConnexion($user)
 	$memberManager = new \AchievementGet\Website\Model\MemberManager();
 
 	$memberManager->lastConnexion($user);
+}
+
+function showArticles($page, $type)
+{
+	$elementByPage = 5;
+	$firstElement = -$elementByPage+($page*$elementByPage);
+
+	$postManager = new \AchievementGet\Website\Model\PostManager();
+	$fewPosts = $postManager->getFewPostsWhere($firstElement, $elementByPage, $type);
+	$nbrElements = $postManager->howMuchCategoryPost($type);
+
+	require('view/frontend/showArticlesView.php');
+}
+
+function forumView($page)
+{
+	$elementByPage = 15;
+	$firstElement = -$elementByPage+($page*$elementByPage);
+
+	$topicManager = new \AchievementGet\Website\Model\TopicManager();
+	$fewTopics = $topicManager->getFewTopics($firstElement, $elementByPage);
+	$nbrElements = $topicManager->howMuchTopic();
+
+	require('view/frontend/homeForumView.php');
+}
+
+function addTopic($author, $title, $content)
+{
+	$topicManager = new \AchievementGet\Website\Model\TopicManager();
+
+	$newTopic = $topicManager->newTopic($author, $title, $content);
+
+	if ($newTopic === false) {
+		throw new Exception('Impossible de créer un nouveau topic.');
+	}
+	else {
+		header('Location: index.php?action=forum&page=1');
+	}
+}
+
+function topicView($id, $page)
+{
+	$elementByPage = 8;
+	$firstElement = -$elementByPage+($page*$elementByPage);
+
+	$topicManager = new \AchievementGet\Website\Model\TopicManager();
+	$messagesForumManager = new \AchievementGet\Website\Model\messagesForumManager();
+
+	$getTopic = $topicManager->getTopicById($id);
+	$listMessages = $messagesForumManager->getFewMessagesById($firstElement, $elementByPage, $id);
+	$nbrElements = $messagesForumManager->howMuchMessagesById($id);
+
+	require('view/frontend/topicView.php');
+}
+
+function addMessage($id, $message, $author)
+{
+	$messagesForumManager = new \AchievementGet\Website\Model\messagesForumManager();
+
+	$addMessageForum = $messagesForumManager->addNewMessage($id, $message, $author);
+	$nbrMessages = $messagesForumManager->howMuchMessagesById($id);
+	$page = ceil($nbrMessages/8);
+
+	if ($addMessageForum === false) {
+		throw new Exception('Impossible d\'ajouter un message.');
+	}
+	else {
+		header('Location: index.php?action=topic&id=' . $id . '&page=' . $page);
+	}
 }

@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 <div class="row mt-2 profileHead darkPanel">
 	<div class="col-2">
-		<img src="public/images/profileimageusers/<?= $memberInformation['profileImage'] ?>" alt="<?= $memberInformation['pseudo'] ?>" class="avatar col-12"/>
+		<img src="public/images/profileimageusers/<?= $memberInformation['profileImage'] ?>" alt="<?= htmlspecialchars($memberInformation['pseudo']) ?>" class="avatar col-12"/>
 	</div>
 	<div class="col-10">
 		<div class="row">
@@ -35,7 +35,7 @@
 						if ($memberInformation['firstname'] == NULL)
 							echo "Non renseigné";
 						else
-							echo $memberInformation['firstname'];
+							echo htmlspecialchars($memberInformation['firstname']);
 					?>
 				</p>
 				<p><strong class="col-6">Nom :</strong>
@@ -43,7 +43,7 @@
 						if ($memberInformation['name'] == NULL)
 							echo "Non renseigné";
 						else
-							echo $memberInformation['name'];
+							echo htmlspecialchars($memberInformation['name']);
 					?>
 				</p>
 				<p><strong class="col-6">Téléphone :</strong>
@@ -51,7 +51,7 @@
 						if($memberInformation['phone'] == NULL)
 							echo "Non renseigné";
 						else
-							echo "0". $memberInformation['phone'];
+							echo htmlspecialchars($memberInformation['phone']);
 					?>
 				</p>
 				<p><strong class="col-6">Date de naissance :</strong>
@@ -77,7 +77,7 @@
 						if ($memberInformation['country'] == NULL)
 							echo "Non renseigné";
 						else
-							echo $memberInformation['country'];
+							echo htmlspecialchars($memberInformation['country']);
 					?>
 				</p>
 				<p><strong class="col-6">Membres depuis le :</strong> <?= $memberInformation['inscription_date_fr'] ?></p>

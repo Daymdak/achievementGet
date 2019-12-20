@@ -27,7 +27,7 @@ form {
 	flex-direction: column;
 }
 
-label {
+label, .bold {
 	font-weight: bold;
 }
 
@@ -35,7 +35,7 @@ label {
 	background-color: #DEAA01;
 }
 
-.yellow:hover, .yellow a:hover {
+.yellow a:hover {
 	color: #DEAA01;
 }
 
@@ -83,7 +83,7 @@ hr {
 	padding: 1% 3% 1% 3%;
 	border-radius: 5px;
 	margin-top: 1% !important;
-	margin-bottom: 5% !important;
+	margin-bottom: 1% !important;
 }
 
 .error {
@@ -115,7 +115,7 @@ p textarea
 	height: 200px;
 }
 
-/*En-tête */
+/*Header */
 
 header {
 	position: fixed;
@@ -163,6 +163,7 @@ footer {
 
 .slider {
 	height: 400px;
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
@@ -262,7 +263,6 @@ figure:hover figcaption {
 
 .metaDataPost {
 	font-size: 16px;
-	color: #CCC;
 }
 
 /*Login/Register Page*/
@@ -308,4 +308,22 @@ figure:hover figcaption {
 	text-align: justify;
 	padding: 1%;
 	overflow-y: scroll;
+}
+
+/*showArticles*/
+
+.box-shadow
+{
+	box-shadow: 0 0 3px black;
+	padding: 0;
+}
+
+.text-right
+{
+	text-align: right;
+}
+
+.grey
+{
+	color: #ccc;
 }

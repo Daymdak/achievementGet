@@ -68,8 +68,8 @@ if($memberInformation['pseudo'] == $_SESSION['pseudo']) {
 					<p><label for="country" class="col-6">Pays :</label><input type="text" name="country" placeholder="Non renseigné" value="<?= $memberInformation['country'] ?>" class="col-5" /></p>
 				</div>
 				<div class="col-6">
-					<p><label for="phone" class="col-6">Téléphone :</label><input type="tel" name="phone" placeholder="Non renseigné" value="<?= $memberInformation['phone'] ?>" maxlength="10" class="col-5" /></p>
-					<p><label for="birthdate" class="col-6">Date de naissance :</label><input type="date" name="birthdate" value="<?= $memberInformation['default_birthdate'] ?>" class="col-5"/></p>
+					<p><label for="phone" class="col-6">Téléphone :</label> <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="Non renseigné" value="<?=  $memberInformation['phone'] ?>" maxlength="10" class="col-5" /></p>
+					<p><label for="birthdate" class="col-6">Date de naissance :</label> <input type="date" name="birthdate" value="<?= $memberInformation['default_birthdate'] ?>" min="1940-01-01" max="2015-01-01" class="col-5"/></p>
 					<p><label for="gender" class="col-6">Genre :</label>
 						<select name="gender" class="col-5">
 							<option value="Homme"

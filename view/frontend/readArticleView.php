@@ -1,11 +1,11 @@
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
-<img src="public/images/postimages/<?= $post['nameImage'] ?>" alt="<?= $post['title'] ?>" class="imagePost col-11"/>
+<img src="public/images/postimages/<?= $post['nameImage'] ?>" alt="<?= htmlspecialchars($post['title']) ?>" class="imagePost col-11"/>
 <div class="darkPanel mt-4 col-10 centerElement">
 	<div class="postText">
-		<h1><?= $post['title'] ?></h1>
-		<p class="metaDataPost">Publié le <?= $post['creation_date_fr'] ?> par <?= $post['author'] ?></p>
+		<h1><?= htmlspecialchars($post['title']) ?></h1>
+		<p class="metaDataPost grey">Publié le <?= $post['creation_date_fr'] ?> par <?= htmlspecialchars($post['author']) ?></p>
 		<hr />
 		<p><?= $post['content'] ?></p>
 	</div>
@@ -78,7 +78,7 @@ while($comment = $comments->fetch())
 		    		$timeSincePost = "il y a " . $return['minute'] . " minutes";
 		    }
 		?>
-		<p><a href="index.php?action=userprofile&user=<?= $comment['author'] ?>" class="yellow"><img src="public/images/profileimageusers/<?= $comment['nameImage'] ?>" alt="<?= $comment['author'] ?>" class="avatar col-1 mr-1"/><strong><?= htmlspecialchars($comment['author']); ?> </a></strong> <?= $timeSincePost ?></p>
+		<p><a href="index.php?action=userprofile&user=<?= $comment['author'] ?>" class="yellow"><img src="public/images/profileimageusers/<?= $comment['nameImage'] ?>" alt="<?= htmlspecialchars($comment['author']) ?>" class="avatar col-1 mr-1"/><strong><?= htmlspecialchars($comment['author']); ?> </a></strong> <?= $timeSincePost ?></p>
 		<hr />
 		<?= htmlspecialchars($comment['comment']); ?>
 	</div>
