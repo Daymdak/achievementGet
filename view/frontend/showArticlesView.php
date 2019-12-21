@@ -12,8 +12,8 @@
 			<div class="col-6">
 				<p class="yellow"><?= $post['category'] ?></p>
 				<hr />
-				<p class="bold"><?= $post['title'] ?></p>
-				<p class="text-right grey" ><?= $post['creation_date_fr'] ?></p>
+				<p class="bold mt-5 mb-5"><?= $post['title'] ?></p>
+				<p class="text-right grey mt-5" ><?= $post['creation_date_fr'] ?></p>
 			</div>
 		</div>
 	</a>

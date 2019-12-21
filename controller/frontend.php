@@ -216,3 +216,17 @@ function addMessage($id, $message, $author)
 		header('Location: index.php?action=topic&id=' . $id . '&page=' . $page);
 	}
 }
+
+function reportComm($postid, $id)
+{
+	$commentManager = new \AchievementGet\Website\Model\commentManager();
+
+	$reportComment = $commentManager->reportComment($id);
+
+	if ($reportComment === false) {
+		throw new Exception('Impossible de signaler le commentaires.');
+	}
+	else {
+		header('Location: index.php?action=readarticle&id=' . $postid);
+	}
+}

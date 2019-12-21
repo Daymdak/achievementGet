@@ -8,7 +8,6 @@
 		<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="vendor/fontawesome/css/all.css" />
 		<link rel="stylesheet" type="text/css" href="public/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="public/css/test.css" />
 	</head>
 
 	<body>

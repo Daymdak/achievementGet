@@ -35,7 +35,7 @@ label, .bold {
 	background-color: #DEAA01;
 }
 
-.yellow a:hover {
+.yellow:hover, .yellow a:hover {
 	color: #DEAA01;
 }
 
@@ -221,14 +221,22 @@ figure:hover figcaption {
 	color: #fff;
 }
 
+.post {
+	overflow: hidden;
+	line-height: 30px;
+}
 .post p {
 	margin: 0;
 	padding: 0.5% 1% 0 1%; 
 	height: 40px;
 }
 
-.post:hover {
-	background-color: #191919;
+.post:hover{
+	background-color: #222;
+}
+
+.post p strong{
+	min-height: 100% !important;
 }
 
 .categoryPost {

@@ -8,7 +8,7 @@ class MemberManager extends Manager
 	function getMemberInformation($pseudo)
 	{
 		$db = $this->dbConnect();
-		$query = $db->prepare('SELECT id, profileImage, pseudo, password, email, phone, DATE_FORMAT(inscription_date, \'%d/%m/%Y\') as inscription_date_fr, name, firstname,DATE_FORMAT(birthdate, \'%d/%m/%Y\') as birthdate_fr, DATE_FORMAT(birthdate, \'%Y-%m-%d\') as default_birthdate, gender, country, DATE_FORMAT(last_connexion, \'%d/%m/%Y\') as last_connexion_fr, bio FROM members WHERE pseudo = :pseudo');
+		$query = $db->prepare('SELECT id, profileImage, pseudo, password, email, phone, DATE_FORMAT(inscription_date, \'%d/%m/%Y\') as inscription_date_fr, name, firstname,DATE_FORMAT(birthdate, \'%d/%m/%Y\') as birthdate_fr, DATE_FORMAT(birthdate, \'%Y-%m-%d\') as default_birthdate, gender, country, DATE_FORMAT(last_connexion, \'%d/%m/%Y\') as last_connexion_fr, bio, role FROM members WHERE pseudo = :pseudo');
 		$query->execute(array(
 			'pseudo' => $pseudo
 		));
@@ -41,7 +41,7 @@ class MemberManager extends Manager
 					{
 						if(preg_match("#^[\S]+@[\w]+\.[\w]{2,4}$#", $email))
 						{
-							$query = $db->prepare('INSERT INTO members(profileImage, pseudo, password, email, inscription_date) VALUES ("default.png", :pseudo, :password, :email, NOW())');
+							$query = $db->prepare('INSERT INTO members(pseudo, password, email, inscription_date) VALUES (:pseudo, :password, :email, NOW())');
 							$query->execute(array(
 								'pseudo' => $pseudo,
 								'password' => password_hash($password1, PASSWORD_DEFAULT),

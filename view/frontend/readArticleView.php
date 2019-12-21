@@ -78,7 +78,16 @@ while($comment = $comments->fetch())
 		    		$timeSincePost = "il y a " . $return['minute'] . " minutes";
 		    }
 		?>
-		<p><a href="index.php?action=userprofile&user=<?= $comment['author'] ?>" class="yellow"><img src="public/images/profileimageusers/<?= $comment['nameImage'] ?>" alt="<?= htmlspecialchars($comment['author']) ?>" class="avatar col-1 mr-1"/><strong><?= htmlspecialchars($comment['author']); ?> </a></strong> <?= $timeSincePost ?></p>
+		<p><a href="index.php?action=userprofile&user=<?= $comment['author'] ?>" class="yellow"><img src="public/images/profileimageusers/<?= $comment['nameImage'] ?>" alt="<?= htmlspecialchars($comment['author']) ?>" class="avatar col-1 mr-1"/><strong><?= htmlspecialchars($comment['author']); ?> </a></strong> <?= $timeSincePost ?>
+			<?php
+			if(isset($_SESSION['pseudo']))
+			{
+			?>
+				<a href="index.php?action=reportComm&postid=<?= $_GET['id'] ?>&id=<?= $comment['id'] ?>" title="Signaler le commentaire"><i class="fas fa-exclamation-circle yellow"></i></a>
+			<?php
+			}
+			?>
+			</p>
 		<hr />
 		<?= htmlspecialchars($comment['comment']); ?>
 	</div>

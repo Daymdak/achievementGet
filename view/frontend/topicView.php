@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 
 <div class="darkPanel col-11 centerElement mb-2">
-	<h1 class="text-center yellow"><?= $getTopic['title'] ?></h1>
+	<h1 class="text-center"><?= $getTopic['title'] ?></h1>
 </div>
 
 <?php
@@ -28,10 +28,19 @@ while($message = $listMessages->fetch())
 	<div class="col-10 centerElement">
 		<p class="titleSection mb-2">Ajouter un message</p>
 		<form action="index.php?action=addMessage&id=<?= $_GET['id'] ?>" method="post" class="darkPanel mb-5 col-12">
-			<textarea name="message" class="mb-1" required></textarea>
+			<textarea name="message" class="mb-1" maxlength="2000" required></textarea>
 			<input type="submit" value="Poster" class="transition button centerElement white" />
 		</form>
 	</div>
+	<?php
+	}
+	else
+	{
+	?>
+		<div class="information centerElement mb-3">
+			<p><i class="fas fa-info-circle fa-2x"></i></p>
+			<p>Il faut être connecter pour poster des messages.</p>
+		</div>
 	<?php
 	}
 ?>

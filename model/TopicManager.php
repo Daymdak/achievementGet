@@ -8,7 +8,7 @@ class TopicManager extends Manager
 	public function getFewTopics($offset, $limit)
 	{
 		$db = $this->dbConnect();
-		$query = $db->prepare('SELECT id, title, author, DATE_FORMAT(creation_date, \'%d/%m/%Y\') as creation_date_fr, DATE_FORMAT(last_modification, \'%d/%m/%Y\') as last_modification_fr FROM topics ORDER BY id DESC LIMIT :offset, :limit');
+		$query = $db->prepare('SELECT id, title, author, DATE_FORMAT(creation_date, \'%d/%m/%Y\') as creation_date_fr, DATE_FORMAT(last_modification, \'%d/%m/%Y\') as last_modification_fr, last_modification FROM topics ORDER BY last_modification DESC LIMIT :offset, :limit');
 		$query->bindValue('offset', $offset, \PDO::PARAM_INT);
 		$query->bindValue('limit', $limit, \PDO::PARAM_INT);
 		$query->execute();

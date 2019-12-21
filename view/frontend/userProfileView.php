@@ -10,11 +10,16 @@
 			<div class="col-11">
 				<h1><strong><?= htmlspecialchars($memberInformation['pseudo']) ?></strong></h1>
 			</div>
-			<div class="col-1">
+			<div class="col-2">
 				<?php
 					if ($memberInformation['pseudo'] == $_SESSION['pseudo']) {
+						if ($memberInformation['role'] == "Administrators") {
+						?>
+							<a href="index.php?action=homeAdmin" title="Accès à l'administration du site"><i class="fas fa-crown fa-lg yellow"></i></a>
+						<?php
+						}
 					?>
-						<a href="index.php?action=changedatauser&user=<?= $_SESSION['pseudo'] ?>" class="changeData"><i class="fas fa-tools fa-lg yellow"></i></a>
+						<a href="index.php?action=changedatauser&user=<?= $_SESSION['pseudo'] ?>" title="Accéder à la page de gestion des informations"><i class="fas fa-tools fa-lg yellow"></i></a>
 					<?php
 					}
 				?>

@@ -37,4 +37,20 @@ class CommentManager extends Manager
 
 		return $newComment;
 	}
+
+	public function reportComment($id)
+	{
+		$db = $this->dbConnect();
+		$query = $db->prepare('SELECT reports FROM comments WHERE id = ?');
+		$query->execute(array($id));
+		$data = $query->fetch();
+		$numberReports = $data['reports'] + 1;
+		$query->closeCursor();
+
+		$query = $db->prepare('UPDATE comments SET reports = :newreports WHERE id = :id');
+		$query->execute(array(
+			'newreports' => $numberReports,
+			'id' => $id
+		));
+	}
 }

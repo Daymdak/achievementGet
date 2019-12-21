@@ -10,7 +10,7 @@
 		{
 		?>
 			<div class="transition post">
-				<a href="index.php?action=topic&id=<?= $topic['id'] ?>&page=1"><p class="col-12"><strong><span class="dateInListPost"><?= $topic['last_modification_fr'] ?></span><span class="yellow col-3 categoryPost"><?= $topic['author'] ?></span><?= $topic['title'] ?></strong></p></a>
+				<a href="index.php?action=topic&id=<?= $topic['id'] ?>&page=1"><p class="col-12"><strong><span class="dateInListPost"><?= $topic['last_modification'] ?></span><span class="yellow col-3 categoryPost"><?= htmlspecialchars($topic['author']) ?></span><span class="titleforum"><?= htmlspecialchars($topic['title']) ?></span></strong></p></a>
 			</div>
 		<?php	
 		}
@@ -27,11 +27,20 @@
 	<div class="col-10 mt-2 centerElement">
 		<p class="titleSection">Nouveau Sujet</p>
 		<form action="index.php?action=addTopic" method="post" class="darkPanel mb-5 col-12">
-			<input type="text" name="topicTitle" placeholder="Saisir le titre du sujet" class="mb-1" required/>
-			<textarea name="topicContent" class="mb-1" placeholder="Saisir le contenu du premier message de votre sujet" required></textarea>
+			<input type="text" name="topicTitle" placeholder="Saisir le titre du sujet" class="mb-1" maxlength="80" required/>
+			<textarea name="topicContent" class="mb-1" placeholder="Saisir le contenu du premier message de votre sujet" maxlength="2000" required></textarea>
 			<input type="submit" value="Poster" class="transition button centerElement white" />
 		</form>
 	</div>
+	<?php
+	}
+	else
+	{
+	?>
+		<div class="information centerElement mb-3">
+			<p><i class="fas fa-info-circle fa-2x"></i></p>
+			<p>Il faut être connecté pour créer des sujets.</p>
+		</div>
 	<?php
 	}
 ?>

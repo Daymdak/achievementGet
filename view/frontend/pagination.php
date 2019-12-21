@@ -1,3 +1,7 @@
+<?php
+if ($elementByPage < $nbrElements)
+{
+?>
 <div class="col-10 darkPanel centerElement mb-1">
 	<div class="row">
 		<div class="col-1">
@@ -41,3 +45,6 @@
 		</div>
 	</div>
 </div>
+<?php
+}
+?>

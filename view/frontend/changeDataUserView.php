@@ -13,7 +13,7 @@ if($memberInformation['pseudo'] == $_SESSION['pseudo']) {
 			<div class="col-11">
 				<h1><strong><?= htmlspecialchars($memberInformation['pseudo']) ?></strong></h1>
 			</div>
-			<div class="col-1">
+			<div class="col-2">
 				<a href="index.php?action=userprofile&user=<?= $memberInformation['pseudo'] ?>"><i class="fas fa-undo yellow"></i></a>
 			</div>
 		</div>

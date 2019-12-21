@@ -9,6 +9,7 @@ if (isset($_COOKIE['pseudo']) && isset($_COOKIE['password']))
 }
 
 require('controller/frontend.php');
+require('controller/backend.php');
 
 try {
 	if (isset($_SESSION['pseudo']))
@@ -148,6 +149,22 @@ try {
 			else {
 				throw new Exception('Aucun identifiant de sujet renseigné.');
 			}
+		}
+		if ($_GET['action'] == 'reportComm') {
+			if (isset($_GET['postid']) && $_GET['postid'] > 0) {
+				if (isset($_GET['id']) && $_GET['postid'] > 0) {
+					reportComm($_GET['postid'], $_GET['id']);
+				}
+				else {
+					throw new Exception('Aucun identifiant de commentaires renseigné.');
+				}
+			}
+			else {
+				throw new Exception('Aucun identifiant de billet reçu.');
+			}
+		}
+		if ($_GET['action'] == 'homeAdmin') {
+
 		}
 	}
 	else {

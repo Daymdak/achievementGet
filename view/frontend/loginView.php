@@ -6,8 +6,8 @@
 	<p class="loginPanelTitle">Se connecter</p>
 	<hr />
 	<form action="index.php?action=login" method="POST" class="centerElement">
-		<p><label for="pseudo" class="col-5">* Pseudo :</label><input type="text" name="pseudo" placeholder="Pseudo" class="col-7" required/></p>
-		<p><label for="password" class="col-5">* Mot de passe :</label><input type="password" name="password" placeholder="Mot de passe" class="col-7" required/></p>
+		<p><label for="pseudo" class="col-5 offset-1">* Pseudo :</label><input type="text" name="pseudo" placeholder="Pseudo" class="col-5" required/></p>
+		<p><label for="password" class="col-5 offset-1">* Mot de passe :</label><input type="password" name="password" placeholder="Mot de passe" class="col-5" required/></p>
 		<p class="rememberMeCheckbox centerElement"><input type="checkbox" name="rememberMe" /><label for="rememberMe" class="ml-1">Se souvenir de moi</label></p>
 		<input type="submit" value="CONNEXION" class="button transition centerElement white" />
 	</form>
@@ -29,10 +29,10 @@
 	<p class="loginPanelTitle">S'inscrire</p>
 	<hr />
 	<form action="index.php?action=register" method="POST" class="centerElement">
-		<p><label for="pseudo" class="col-5">* Pseudo :</label><input type="text" name="pseudo" placeholder="Pseudo" class="col-7" required /></p>
-		<p><label for="pseudo" class="col-5">* Mot de passe :</label><input type="password" name="password1" placeholder="Mot de passe" class="col-7" required /></p>
-		<p><label for="pseudo" class="col-5">* Confirmation :</label><input type="password" name="password2" placeholder="Confirmation du mot de passe" class="col-7" required/></p>
-		<p><label for="pseudo" class="col-5">* Adresse e-mail :</label><input type="email" name="email" placeholder="Adresse e-mail" class="col-7" required /></p>
+		<p><label for="pseudo" class="col-5 offset-1">* Pseudo :</label><input type="text" name="pseudo" placeholder="Pseudo" class="col-5" required /></p>
+		<p><label for="pseudo" class="col-5 offset-1">* Mot de passe :</label><input type="password" name="password1" placeholder="Mot de passe" class="col-5" required /></p>
+		<p><label for="pseudo" class="col-5 offset-1">* Confirmation :</label><input type="password" name="password2" placeholder="Confirmation du mot de passe" class="col-5" required/></p>
+		<p><label for="pseudo" class="col-5 offset-1">* Adresse e-mail :</label><input type="email" name="email" placeholder="Adresse e-mail" class="col-5" required /></p>
 		<input type="submit" value="INSCRIPTION" class="button transition centerElement white" />
 	</form>
 </div>
