@@ -5,7 +5,7 @@ require_once("model/Manager.php");
 
 class MemberManager extends Manager
 {
-	function getMemberInformation($pseudo)
+	public function getMemberInformation($pseudo)
 	{
 		$db = $this->dbConnect();
 		$query = $db->prepare('SELECT id, profileImage, pseudo, password, email, phone, DATE_FORMAT(inscription_date, \'%d/%m/%Y\') as inscription_date_fr, name, firstname,DATE_FORMAT(birthdate, \'%d/%m/%Y\') as birthdate_fr, DATE_FORMAT(birthdate, \'%Y-%m-%d\') as default_birthdate, gender, country, DATE_FORMAT(last_connexion, \'%d/%m/%Y\') as last_connexion_fr, bio, role FROM members WHERE pseudo = :pseudo');
@@ -13,11 +13,12 @@ class MemberManager extends Manager
 			'pseudo' => $pseudo
 		));
 		$memberInformation = $query->fetch();
+		$query->closeCursor();
 
 		return $memberInformation;
 	}
 
-	function verifyRegisterData($pseudo, $password1, $password2, $email)
+	public function verifyRegisterData($pseudo, $password1, $password2, $email)
 	{
 		$validity = true;
 
@@ -48,6 +49,7 @@ class MemberManager extends Manager
 								'email' => $email
 							));
 							$_SESSION['pseudo'] = $pseudo;
+							$query->closeCursor();
 							return 0;
 						}
 						else
@@ -66,7 +68,7 @@ class MemberManager extends Manager
 			return 1;
 	}
 
-	function beConnect($pseudo, $password, $rememberMe)
+	public function beConnect($pseudo, $password, $rememberMe)
 	{
 		$db = $this->dbConnect();
 		$query = $db->prepare('SELECT id, pseudo, password FROM members WHERE pseudo = :pseudo');
@@ -87,6 +89,7 @@ class MemberManager extends Manager
 					setcookie('password', $result['password'], time() + 365*24*3600, null, null, false, true);
 				}
 				$_SESSION['pseudo'] = $pseudo;
+				$query->closeCursor();
 				return 0;
 			}
 			else
@@ -96,35 +99,18 @@ class MemberManager extends Manager
 			return 6;
 	}
 
-	function verifyProfileImage($image)
+	public function changeAvatar($image, $extension)
 	{
-		if (isset($image) && $image['error'] == 0){
-			if ($image['size'] <= 1000000) {
-				$dataImage = pathinfo($image['name']);
-				$extensionImage = $dataImage['extension'];
-				$allowExtensions = array('jpg', 'jpeg', 'gif', 'png');
-
-				if (in_array($extensionImage, $allowExtensions)) {
-					move_uploaded_file($image['tmp_name'], 'public/images/profileimageusers/' . $_SESSION['pseudo'] . '.' . $dataImage['extension']);
-					$db = $this->dbConnect();
-					$query = $db->prepare('UPDATE members SET profileimage = :image WHERE pseudo = :pseudo');
-					$query->execute(array(
-						'image' => $_SESSION['pseudo'] . '.' . $dataImage['extension'],
-						'pseudo' => $_SESSION['pseudo']
-					));
-					return 4;
-				}
-				else
-					return 3;
-			}
-			else
-				return 2;
-		}
-		else
-			return 1;
+		$db = $this->dbConnect();
+		$query = $db->prepare('UPDATE members SET profileimage = :image WHERE pseudo = :pseudo');
+		$query->execute(array(
+			'image' => $_SESSION['pseudo'] . '.' . $extension,
+			'pseudo' => $_SESSION['pseudo']
+		));
+		$query->closeCursor();
 	}
 
-	function changeData($firstname, $name, $country, $phone, $birthdate, $gender, $bio, $user)
+	public function changeData($firstname, $name, $country, $phone, $birthdate, $gender, $bio)
 	{
 		if (empty($birthdate)) {
 			$birthdate = NULL;
@@ -142,35 +128,39 @@ class MemberManager extends Manager
 			'birthdate' => $birthdate,
 			'gender' => $gender,
 			'bio' => $bio,
-			'user' => $user
+			'user' => $_SESSION['pseudo']
 		));
 
 		$query->closeCursor();
 	}
 
-	function updatePasswordUser($exPassword, $newPassword, $newPassword2, $user)
+	public function verifyPassword($password)
 	{
 		$db = $this->dbConnect();
-		$query = $db->prepare('SELECT password FROM members WHERE pseudo = :pseudo');
-		$query->execute(array(
-			'pseudo' => $user
-		));
+		$query = $db->prepare('SELECT password FROM members WHERE pseudo = ?');
+		$query->execute(array($_SESSION['pseudo']));
 		$result = $query->fetch();
+		$verifyPassword = password_verify($password, $result['password']);
 		$query->closeCursor();
 
-		$verifyPassword = password_verify($exPassword, $result['password']);
+		return $verifyPassword;
+	}
 
+	public function updatePasswordUser($verifyPassword, $newPassword, $newPassword2)
+	{
 		if($verifyPassword)
 		{
 			if ($newPassword === $newPassword2)
 			{
 				if(preg_match("#^[\S]{6,16}$#", $newPassword))
 				{
+					$db = $this->dbConnect();
 					$query = $db->prepare('UPDATE members SET password = :password WHERE pseudo = :pseudo');
 					$query->execute(array(
 						'password' => password_hash($newPassword, PASSWORD_DEFAULT),
-						'pseudo' => $user
+						'pseudo' => $_SESSION['pseudo']
 					));
+					$query->closeCursor();
 					return 4;
 				}
 				else
@@ -181,15 +171,25 @@ class MemberManager extends Manager
 		}
 		else
 			return 5;
-
 	}
 
-	function lastConnexion($user)
+	public function lastConnexion()
 	{
 		$db = $this->dbConnect();
 		$query = $db->prepare('UPDATE members SET last_connexion = NOW() WHERE pseudo = :pseudo');
 		$query->execute(array(
-			'pseudo' => $user
+			'pseudo' => $_SESSION['pseudo']
 		));
+		$query->closeCursor();
+	}
+
+	public function howMuchMembers()
+	{
+		$db = $this->dbConnect();
+		$query = $db->query('SELECT COUNT(*) AS nbElement FROM members');
+		$nbrElements = $query->fetch();
+		$query->closeCursor();
+
+		return $nbrElements['nbElement'];
 	}
 }

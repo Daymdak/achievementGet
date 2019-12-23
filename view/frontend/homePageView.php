@@ -13,7 +13,9 @@
 		?>	
 			<figure class="illustratedPost transition">
 				<a href="index.php?action=readarticle&amp;id=<?= $data['id']?>">
-					<img src="public/images/postimages/<?= $data['nameImage'] ?>" alt="<?= $data['title'] ?>" />
+					<div class="illustration">
+						<img src="public/images/postimages/<?= $data['nameImage'] ?>" alt="<?= $data['title'] ?>" />
+					</div>
 					<figcaption class="transition">
 						<p class="ml-1 white"><?= htmlspecialchars($data['title']) ?></p>
 					</figcaption>

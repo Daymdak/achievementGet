@@ -72,10 +72,10 @@ try {
 			if (isset($_GET['user'])) {
 				if (isset($_GET['error']) && $_GET['error'] > 0)
 				{
-					changeDataUser($_GET['user'], $_GET['error']);
+					changeDataUser($_GET['error']);
 				}
 				else {
-					changeDataUser($_GET['user'], false);
+					changeDataUser(false);
 				}
 			}
 			else {
@@ -85,7 +85,7 @@ try {
 		if ($_GET['action'] == 'updatedatauser') {
 			if (isset($_GET['user']))
 			{
-				updateDataUser($_POST['firstname'], $_POST['name'], $_POST['country'], $_POST['phone'], $_POST['birthdate'], $_POST['gender'], $_POST['bio'], $_GET['user']);
+				updateDataUser($_POST['firstname'], $_POST['name'], $_POST['country'], $_POST['phone'], $_POST['birthdate'], $_POST['gender'], $_POST['bio']);
 			}
 			else {
 				throw new Exception('Aucun nom d\'utilisateur envoyé.');
@@ -95,14 +95,14 @@ try {
 		if ($_GET['action'] == 'updatepassword') {
 			if (isset($_GET['user']))
 			{
-				updatePassword($_POST['exPassword'], $_POST['newPassword'], $_POST['newPassword2'], $_GET['user']);
+				updatePassword($_POST['exPassword'], $_POST['newPassword'], $_POST['newPassword2']);
 			}
 			else {
 				throw new Exception('Aucun nom d\'utilisateur envoyé.');
 			}
 		}
 		if ($_GET['action'] == 'addprofileimage') {
-			checkImage($_FILES['newprofileimage']);
+			updateAvatar($_FILES['newprofileimage']);
 		}
 		if ($_GET['action'] == 'showArticles') {
 			if (isset($_GET['type'])) {
@@ -126,7 +126,7 @@ try {
 			}
 		}
 		if ($_GET['action'] == 'addTopic') {
-			addTopic($_SESSION['pseudo'], $_POST['topicTitle'], $_POST['topicContent']);
+			addTopic($_POST['topicTitle'], $_POST['topicContent']);
 		}
 		if ($_GET['action'] == 'topic') {
 			if (isset($_GET['id']) && $_GET['id'] > 0)
@@ -164,7 +164,10 @@ try {
 			}
 		}
 		if ($_GET['action'] == 'homeAdmin') {
-
+			homeAdminView();
+		}
+		if($_GET['action'] == 'addArticle') {
+			addArticle($_POST['title'], $_FILES['nameImage'], $_POST['category'], $_POST['content']);
 		}
 	}
 	else {

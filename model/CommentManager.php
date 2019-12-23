@@ -8,10 +8,30 @@ class CommentManager extends Manager
 	public function getPostComments($id)
 	{
 		$db = $this->dbConnect();
-		$comments = $db->prepare('SELECT * FROM comments WHERE post_id = ? ORDER BY id DESC');
-		$comments->execute(array($id));
+		$query = $db->prepare('SELECT * FROM comments WHERE post_id = ? ORDER BY id DESC');
+		$query->execute(array($id));
 
-		return $comments;
+		return $query;
+	}
+
+	public function howMuchComments()
+	{
+		$db = $this->dbConnect();
+		$query = $db->query('SELECT COUNT(*) AS nbElement FROM comments');
+		$nbrElements = $query->fetch();
+		$query->closeCursor();
+
+		return $nbrElements['nbElement'];
+	}
+
+	public function howMuchReportedComments()
+	{
+		$db = $this->dbConnect();
+		$query = $db->query('SELECT COUNT(*) AS nbElement FROM comments WHERE reports > 0');
+		$nbrElements = $query->fetch();
+		$query->closeCursor();
+
+		return $nbrElements['nbElement'];
 	}
 
 	public function howMuchAuthorComments($author)
@@ -20,25 +40,22 @@ class CommentManager extends Manager
 		$query = $db->prepare('SELECT COUNT(*) AS nbcomment FROM comments WHERE author = ?');
 		$query->execute(array($author));
 		$nbrComments = $query->fetch();
+		$query->closeCursor();
 
 		return $nbrComments['nbcomment'];
 	}
 
-	public function postComment($id, $messageContent)
+	public function postComment($id, $messageContent, $avatar)
 	{
 		$db = $this->dbConnect();
-		$query = $db->prepare('SELECT profileImage FROM members WHERE pseudo = ?');
-		$query->execute(array($_SESSION['pseudo']));
-		$avatar = $query->fetch();
+		$query = $db->prepare('INSERT INTO comments(post_id, author, nameImage,comment, reports, comment_date) VALUES(?, ?, ?, ?, 0, NOW())');
+		$newComment = $query->execute(array($id, $_SESSION['pseudo'], $avatar, $messageContent));
 		$query->closeCursor();
-
-		$comment = $db->prepare('INSERT INTO comments(post_id, author, nameImage,comment, reports, comment_date) VALUES(?, ?, ?, ?, 0, NOW())');
-		$newComment = $comment->execute(array($id, $_SESSION['pseudo'], $avatar['profileImage'],$messageContent));
 
 		return $newComment;
 	}
 
-	public function reportComment($id)
+	public function getNumberOfReport($id)
 	{
 		$db = $this->dbConnect();
 		$query = $db->prepare('SELECT reports FROM comments WHERE id = ?');
@@ -47,10 +64,17 @@ class CommentManager extends Manager
 		$numberReports = $data['reports'] + 1;
 		$query->closeCursor();
 
+		return $numberReports;
+	}
+
+	public function reportComment($id, $report)
+	{	
+		$db = $this->dbConnect();
 		$query = $db->prepare('UPDATE comments SET reports = :newreports WHERE id = :id');
 		$query->execute(array(
-			'newreports' => $numberReports,
+			'newreports' => $report,
 			'id' => $id
 		));
+		$query->closeCursor();
 	}
 }

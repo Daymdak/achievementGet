@@ -5,6 +5,7 @@ require_once('model/CommentManager.php');
 require_once('model/MemberManager.php');
 require_once('model/TopicManager.php');
 require_once('model/MessagesForumManager.php');
+require_once('model/UtilitaryManager.php');
 
 function homePage()
 {
@@ -70,8 +71,10 @@ function unlog()
 function addComment($id, $messageContent)
 {
 	$commentManager = new \AchievementGet\Website\Model\CommentManager();
+	$memberManager = new \AchievementGet\Website\Model\MemberManager();
 
-	$newComment = $commentManager->postComment($id, $messageContent);
+	$avatar = $memberManager->getMemberInformation($_SESSION['pseudo']);
+	$newComment = $commentManager->postComment($id, $messageContent, $avatar['profileImage']);
 
 	if ($newComment === false) {
 		throw new Exception('Impossible d\'ajouter le commentaire !');
@@ -92,60 +95,63 @@ function userProfile($user)
 	require('view/frontend/userprofileview.php');
 }
 
-function changeDataUser($user, $error)
+function changeDataUser($error)
 {
 	$memberManager = new \AchievementGet\Website\Model\MemberManager();
 
-	$memberInformation = $memberManager->getMemberInformation($user);
+	$memberInformation = $memberManager->getMemberInformation($_SESSION['pseudo']);
 
 	require('view/frontend/changedatauserview.php');
 }
 
-function updateDataUser($firstname, $name, $country, $phone, $birthdate, $gender, $bio, $user) {
+function updateDataUser($firstname, $name, $country, $phone, $birthdate, $gender, $bio) {
 	$memberManager = new \AchievementGet\Website\Model\MemberManager();
 
-	$updateData = $memberManager->changeData($firstname, $name, $country, $phone, $birthdate, $gender, $bio, $user);
+	$updateData = $memberManager->changeData($firstname, $name, $country, $phone, $birthdate, $gender, $bio);
 
 	if ($updateData === false) {
 		throw new Exception('Impossible de mettre à jour le profil');
 	}
 	else {
-		header('Location: index.php?action=changedatauser&user=' . $user);
+		header('Location: index.php?action=changedatauser&user=' . $_SESSION['pseudo']);
 	}
 }
 
-function updatePassword($exPassword, $newPassword, $newPassword2, $user) {
+function updatePassword($exPassword, $newPassword, $newPassword2) {
 	$memberManager = new \AchievementGet\Website\Model\MemberManager();
 
-	$updatePasswordUser = $memberManager->updatePasswordUser($exPassword, $newPassword, $newPassword2, $user);
+	$verifyPassword = $memberManager->verifyPassword($exPassword);
+	$updatePasswordUser = $memberManager->updatePasswordUser($verifyPassword, $newPassword, $newPassword2);
 
 	if ($updatePasswordUser == 4) {
-		header('Location: index.php?action=changedatauser&user=' . $user);
-	}
-	else {
-		header('Location: index.php?action=changedatauser&user=' . $user . '&error=' . $updatePasswordUser);
-	}
-}
-
-function checkImage($image)
-{
-	$memberManager = new \AchievementGet\Website\Model\MemberManager();
-
-	$addImage = $memberManager->verifyProfileImage($image);
-
-	if ($addImage == 4) {
 		header('Location: index.php?action=changedatauser&user=' . $_SESSION['pseudo']);
 	}
 	else {
-		header('Location: index.php?action=changedatauser&user=' . $_SESSION['pseudo'] . '&error=' . $addImage);
+		header('Location: index.php?action=changedatauser&user=' . $_SESSION['pseudo'] . '&error=' . $updatePasswordUser);
 	}
 }
 
-function updateLastConnexion($user)
+function updateAvatar($image)
+{
+	$memberManager = new \AchievementGet\Website\Model\MemberManager();
+	$utilitaryManager = new \AchievementGet\Website\Model\utilitaryManager();
+
+	$extension = $utilitaryManager->verifyProfileImage($image);
+
+	if ($extension >= 1 && $extension <= 3) {
+		header('Location: index.php?action=changedatauser&user=' . $_SESSION['pseudo'] . '&error=' . $addImage);
+	}
+	else {
+		$memberManager->changeAvatar($image, $extension);
+		header('Location: index.php?action=changedatauser&user=' . $_SESSION['pseudo']);
+	}
+}
+
+function updateLastConnexion()
 {
 	$memberManager = new \AchievementGet\Website\Model\MemberManager();
 
-	$memberManager->lastConnexion($user);
+	$memberManager->lastConnexion();
 }
 
 function showArticles($page, $type)
@@ -167,16 +173,21 @@ function forumView($page)
 
 	$topicManager = new \AchievementGet\Website\Model\TopicManager();
 	$fewTopics = $topicManager->getFewTopics($firstElement, $elementByPage);
-	$nbrElements = $topicManager->howMuchTopic();
+	$nbrElements = $topicManager->howMuchTopics();
 
 	require('view/frontend/homeForumView.php');
 }
 
-function addTopic($author, $title, $content)
+function addTopic($title, $content)
 {
+	$memberManager = new \AchievementGet\Website\Model\MemberManager();
 	$topicManager = new \AchievementGet\Website\Model\TopicManager();
+	$messagesForumManager = new \AchievementGet\Website\Model\MessagesForumManager();
 
-	$newTopic = $topicManager->newTopic($author, $title, $content);
+	$avatar = $memberManager->getMemberInformation($_SESSION['pseudo']);
+	$newTopic = $topicManager->newTopic($title);
+	$idTopic = $topicManager->idFromLastTopic();
+	$newMessage = $messagesForumManager->addNewMessage($idTopic, $content, $avatar['profileImage']);
 
 	if ($newTopic === false) {
 		throw new Exception('Impossible de créer un nouveau topic.');
@@ -201,11 +212,15 @@ function topicView($id, $page)
 	require('view/frontend/topicView.php');
 }
 
-function addMessage($id, $message, $author)
+function addMessage($id, $message)
 {
 	$messagesForumManager = new \AchievementGet\Website\Model\messagesForumManager();
+	$memberManager = new \AchievementGet\Website\model\memberManager();
+	$topicManager = new \AchievementGet\Website\Model\TopicManager();
 
-	$addMessageForum = $messagesForumManager->addNewMessage($id, $message, $author);
+	$avatar = $memberManager->getMemberInformation($_SESSION['pseudo']);
+	$addMessageForum = $messagesForumManager->addNewMessage($id, $message, $avatar['profileImage']);
+	$lastUpdate = $topicManager->lastUpdate($id);
 	$nbrMessages = $messagesForumManager->howMuchMessagesById($id);
 	$page = ceil($nbrMessages/8);
 
@@ -219,9 +234,10 @@ function addMessage($id, $message, $author)
 
 function reportComm($postid, $id)
 {
-	$commentManager = new \AchievementGet\Website\Model\commentManager();
+	$commentManager = new \AchievementGet\Website\Model\CommentManager();
 
-	$reportComment = $commentManager->reportComment($id);
+	$numberOfReport = $commentManager->getNumberOfReport($id);
+	$reportComment = $commentManager->reportComment($id, $numberOfReport);
 
 	if ($reportComment === false) {
 		throw new Exception('Impossible de signaler le commentaires.');

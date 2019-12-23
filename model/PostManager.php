@@ -34,6 +34,7 @@ class PostManager extends Manager
 		$query = $db->prepare('SELECT COUNT(*) AS nbPosts FROM posts WHERE category = ?');
 		$query->execute(array($category));
 		$nbrPosts = $query->fetch();
+		$query->closeCursor();
 
 		return $nbrPosts['nbPosts'];
 	}
@@ -44,7 +45,32 @@ class PostManager extends Manager
 		$query = $db->prepare('SELECT id, nameImage, title, author,category, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%m\') as creation_date_fr FROM posts WHERE id = ?');
 		$query->execute(array($id));
 		$post = $query->fetch();
+		$query->closeCursor();
 
 		return $post;
+	}
+
+	public function howMuchPosts()
+	{
+		$db = $this->dbConnect();
+		$query = $db->query('SELECT COUNT(*) AS nbElement FROM posts');
+		$nbrElements = $query->fetch();
+		$query->closeCursor();
+
+		return $nbrElements['nbElement'];
+	}
+
+	public function addNewPost($title, $completeName, $category, $content)
+	{
+		$db = $this->dbConnect();
+		$query = $db->prepare('INSERT INTO posts(nameImage, title, author, category, content, creation_date) VALUES(:image, :title, :author, :category, :content, NOW())');
+		$query->execute(array(
+			'image' => $completeName,
+			'title' => $title,
+			'author' => $_SESSION['pseudo'],
+			'category' => $category,
+			'content' => $content
+		));
+		$query->closeCursor();
 	}
 }

@@ -22,40 +22,47 @@ class TopicManager extends Manager
 		$query = $db->prepare('SELECT id, title, author FROM topics WHERE id = ?');
 		$query->execute(array($id));
 		$topic = $query->fetch();
+		$query->closeCursor();
 
 		return $topic;
 	}
 
-	public function howMuchTopic()
+	public function howMuchTopics()
 	{
 		$db = $this->dbConnect();
-		$query = $db->query('SELECT COUNT(*) AS nbTopics FROM topics');
-		$nbrTopics = $query->fetch();
+		$query = $db->query('SELECT COUNT(*) AS nbElement FROM topics');
+		$nbrElements = $query->fetch();
+		$query->closeCursor();
 
-		return $nbrTopics['nbTopics'];
+		return $nbrElements['nbElement'];
 	}
 
-	public function newTopic($author, $title, $content)
+	public function newTopic($title)
 	{
 		$db = $this->dbConnect();
-		$query = $db->prepare('SELECT profileImage FROM members WHERE pseudo = ?');
-		$query->execute(array($author));
-		$avatar = $query->fetch();
-		$query->closeCursor();
-
-		$topic = $db->prepare('INSERT INTO topics(title, author, creation_date, last_modification) VALUES (?, ?, NOW(), NOW())');
-		$newTopic = $topic->execute(array($title, $author));
-		$topic->closeCursor();
-
-		$query = $db->query('SELECT id FROM topics WHERE id=(select max(id) from topics)');
-		$maxId = $query->fetch();
-		$idTopic = $maxId['id'];
-		$query->closeCursor();
-
-		$query = $db->prepare('INSERT INTO messagesforum(topic_id, author, nameImage, message, reports, message_date) VALUES(?, ?, ?, ?, 0, NOW())');
-		$firstmessage = $query->execute(array($idTopic, $author, $avatar['profileImage'], $content));
+		$query = $db->prepare('INSERT INTO topics(title, author, creation_date, last_modification) VALUES (?, ?, NOW(), NOW())');
+		$newTopic = $query->execute(array($title, $_SESSION['pseudo']));
 		$query->closeCursor();
 
 		return $newTopic;
+	}
+
+	public function idFromLastTopic()
+	{
+		$db = $this->dbConnect();
+		$query = $db->query('SELECT id FROM topics WHERE id=(select max(id) from topics)');
+		$maxId = $query->fetch();
+		$idTopic = $maxId['id'];
+		$query->closeCursor();	
+
+		return $idTopic;
+	}
+
+	public function lastUpdate($id)
+	{
+		$db = $this->dbConnect();
+		$query = $db->prepare('UPDATE topics SET last_modification = NOW() WHERE id = ?');
+		$query->execute(array($id));
+		$query->closeCursor();
 	}
 }

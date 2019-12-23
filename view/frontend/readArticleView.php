@@ -1,7 +1,7 @@
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
-<img src="public/images/postimages/<?= $post['nameImage'] ?>" alt="<?= htmlspecialchars($post['title']) ?>" class="imagePost col-11"/>
+<img src="public/images/postimages/<?= $post['nameImage'] ?>" alt="<?= htmlspecialchars($post['title']) ?>" class="imagePost col-11" />
 <div class="darkPanel mt-4 col-10 centerElement">
 	<div class="postText">
 		<h1><?= htmlspecialchars($post['title']) ?></h1>
