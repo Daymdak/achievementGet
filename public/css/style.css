@@ -60,7 +60,7 @@ hr {
 	background-color: #EFEFEF;
 	box-shadow: 0px 0px 3px black;
 	padding: 80px 2% 1px 2%;
-	min-height: 95vh;
+	min-height: 94vh;
 }
 
 .avatar {
@@ -150,7 +150,7 @@ footer {
 	position: relative;
 	bottom: 0;
 	left: 0;
-	height: 5vh;
+	height: 6vh;
 	display: flex;
 	justify-content: center;
 	align-items: flex-end;
@@ -201,13 +201,17 @@ footer {
 	height: 200px;
 }
 
+figure
+{
+	position: relative;
+}
+
 figcaption {
 	position: absolute;
 	bottom: 0px;
 	height: 35%;
 	width: 100%;
 	background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8) 50%); 
-	visibility: hidden;
 	opacity: 0;
 }
 
@@ -217,42 +221,29 @@ figcaption p {
 }
 
 figure:hover figcaption {
-	visibility: visible;
 	opacity: 1;
 }
 
 .listLastPosts {
 	padding: 0 !important;
+	font-weight: bold;
+	font-size: 18px;
 }
 
 .listLastPosts a {
 	color: #fff;
 }
 
-.post {
-	overflow: hidden;
-	line-height: 30px;
+.post
+{
+	padding: 0.5%;
 }
-.post p {
-	margin: 0;
-	padding: 0.5% 1% 0 1%; 
-	height: 40px;
-}
-
 .post:hover{
 	background-color: #222;
 }
 
-.post p strong{
-	min-height: 100% !important;
-}
-
 .categoryPost {
 	display: inline-block;
-}
-
-.dateInListPost {
-	color: #fff;
 }
 
 /*Read Article*/
@@ -268,13 +259,15 @@ figure:hover figcaption {
 	text-align: justify;
 	padding: 3% 9% 5% 9%;
 	font-size: 18px;
+	overflow-wrap: break-word;
 }
 
 .postText h1 {
 	color: #EFBB12;
+	text-align: left;
 	font-weight: bold;
 	text-transform: uppercase;
-	font-size: 34px;
+	font-size: 26px;
 }
 
 .postText img {
@@ -348,6 +341,7 @@ figure:hover figcaption {
 	color: #ccc;
 }
 
+/*Admin*/
 
 .blockStat {
 	display: flex;
@@ -357,8 +351,8 @@ figure:hover figcaption {
 
 .stat
 {
-	width: 150px;
-	height: 150px;
+	width: 130px;
+	height: 130px;
 	margin: 1%;
 	display: flex;
 	flex-direction: column;
@@ -369,4 +363,92 @@ figure:hover figcaption {
 .moySize
 {
 	font-size: 36px;
+}
+
+/*Media*/
+
+@media (min-width: 576px) and (max-width: 992px) {
+	.slider {
+		height: 100%;
+	}
+	.illustratedPost {
+	width: 48.5%;
+	}
+	figcaption {
+		opacity: 1 !important;
+	}
+	.listLastPosts .post:nth-child(even), .listTopic .post:nth-child(even)
+	{
+		background-color: #222;
+	}
+}
+
+@media (max-width: 575px) {
+	.slider {
+		height: 100%;
+	}
+
+	.illustratedPost {
+		width: 100%;
+	}
+
+	.illustratedPost img{
+		height: 310px !important;
+	}
+
+	figcaption {
+		opacity: 1 !important;
+	}
+
+	.imageListArticle {
+		margin: 0% auto;
+	}
+
+	.listLastPosts .post:nth-child(even), .listTopic .post:nth-child(even)
+	{
+		background-color: #222;
+	}
+
+	.lowSiz {
+		font-weight: normal;
+		font-size: 12px;
+	}
+
+	header {
+		flex-direction: column-reverse;
+		align-items: center;
+		height: auto;
+		transition: transform .4s cubic-bezier(.25, .1, .25, 1);
+	}
+
+	.container
+	{
+		margin-top: 30px;
+	}
+	#wrap:not(:target) {
+		transform: translateY(-55%);
+	}
+
+	#wrap:target {
+		transform: translateY(0px);
+	}
+
+	#wrap:target #open,
+	#wrap:not(:target) #close {
+	  display: none;
+	}
+
+	#wrap:not(:target) #open,
+	#wrap:target #close {
+	  display: flex;
+	}
+}
+
+.listTopic {
+	padding: 0;
+}
+
+#open, #close
+{
+	display: none;
 }

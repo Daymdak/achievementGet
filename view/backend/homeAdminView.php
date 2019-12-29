@@ -2,9 +2,9 @@
 
 <?php ob_start(); ?>
 
-<div class="mt-3">
-	<p class="titleSection text-center">Quelques stats</p>
-	<div class="mt-2 blockStat col-8 centerElement">
+<div class="mt-3 col-12 col-md-10 col-lg-7 centerElement">
+	<p class="titleSection">Quelques stats</p>
+	<div class="mt-2 blockStat">
 		<div class="stat darkPanel text-center"><p class="moySize yellow"><?= $nbrMembers ?></p><p>Membres</p></div>
 		<div class="stat darkPanel text-center"><p class="moySize yellow"><?= $nbrPosts ?></p><p>Articles</p></div>
 		<div class="stat darkPanel text-center"><p class="moySize yellow"><?= $nbrComments ?></p><p>Commentaires</p></div>
@@ -16,7 +16,7 @@
 	</div>
 </div>
 
-<div class="mt-3 mb-5 col-10 centerElement">
+<div class="mt-3 mb-5 col-12 col-md-10 col-lg-7 centerElement">
 	<p class="titleSection">Ajouter un article</p>
 	<div class="darkPanel mt-2">
 		<form action="index.php?action=addArticle" method="post" enctype="multipart/form-data">

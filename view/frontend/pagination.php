@@ -2,9 +2,9 @@
 if ($elementByPage < $nbrElements)
 {
 ?>
-<div class="col-10 darkPanel centerElement mb-1">
+<div class="col-12 col-md-10 darkPanel centerElement mb-1">
 	<div class="row">
-		<div class="col-1">
+		<div class="col-2">
 			<?php
 			if ($page > 1) {
 			?>
@@ -22,10 +22,10 @@ if ($elementByPage < $nbrElements)
 			}
 			?>
 		</div>
-		<div class="col-10">
+		<div class="col-8">
 			<p class="text-center">Page <?= $page ?></p>
 		</div>
-		<div class="col-1">
+		<div class="col-2">
 			<?php
 			if ($firstElement+$elementByPage < $nbrElements) {
 			?>

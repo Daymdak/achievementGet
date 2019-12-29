@@ -1,16 +1,16 @@
 <?php $title = htmlspecialchars(htmlspecialchars($memberInformation['pseudo'])) . ' - Profil' ?>
 
 <?php ob_start(); ?>
-<div class="row mt-2 profileHead darkPanel">
-	<div class="col-2">
+<div class="row mt-2 profileHead darkPanel centerElement">
+	<div class="col-4 col-md-3 col-lg-2">
 		<img src="public/images/profileimageusers/<?= $memberInformation['profileImage'] ?>" alt="<?= htmlspecialchars($memberInformation['pseudo']) ?>" class="avatar col-12"/>
 	</div>
-	<div class="col-10">
+	<div class="col-8 col-md-9 col-lg-10">
 		<div class="row">
 			<div class="col-11">
 				<h1><strong><?= htmlspecialchars($memberInformation['pseudo']) ?></strong></h1>
 			</div>
-			<div class="col-2">
+			<div class="col-6">
 				<?php
 					if ($memberInformation['pseudo'] == $_SESSION['pseudo']) {
 						if ($memberInformation['role'] == "Administrators") {
@@ -29,12 +29,12 @@
 	</div>
 </div>
 
-<div class="row mt-5 profileInfos darkPanel">
+<div class="row mt-5 profileInfos darkPanel centerElement">
 	<div class="col-12">
 		<h2>Informations</h2>
 		<hr />
 		<div class="row">
-			<div class="col-6">
+			<div class="col-12 col-md-6">
 				<p><strong class="col-6">Prénom :</strong>
 					<?php
 						if ($memberInformation['firstname'] == NULL)
@@ -76,7 +76,7 @@
 					?>
 				</p>
 			</div>
-			<div class="col-6">
+			<div class="col-12 col-md-6">
 				<p><strong class="col-6">Pays :</strong>
 					<?php
 						if ($memberInformation['country'] == NULL)
@@ -102,7 +102,7 @@
 	</div>
 </div>
 
-<div class="row profileInfos profileBio mt-5 mb-5 darkPanel">
+<div class="row profileInfos profileBio mt-5 mb-5 darkPanel centerElement">
 	<h2>Biographie</h2>
 	<div class="col-12">
 		<hr />

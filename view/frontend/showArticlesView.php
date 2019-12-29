@@ -6,17 +6,21 @@
 	while($post = $fewPosts->fetch())
 	{
 	?>
-	<a href="index.php?action=readarticle&amp;id=<?= $post['id']?>" >
-		<div class="row darkPanel mb-3 mt-3">
-			<img src="public/images/postimages/<?= $post['nameImage'] ?>" class="col-6 box-shadow" />
-			<div class="col-6">
-				<p class="yellow"><?= $post['category'] ?></p>
-				<hr />
-				<p class="bold mt-5 mb-5"><?= $post['title'] ?></p>
-				<p class="text-right grey mt-5" ><?= $post['creation_date_fr'] ?></p>
+	
+		<div class="col-12 col-lg-10 darkPanel mb-3 mt-3 centerElement">
+			<a href="index.php?action=readarticle&amp;id=<?= $post['id']?>" >
+			<div class="row">
+				<img src="public/images/postimages/<?= $post['nameImage'] ?>" class="col-11 col-md-6 ml-md-3 mb-2 box-shadow imageListArticle" />
+				<div class="col-12 col-md-5">
+					<p class="yellow"><?= $post['category'] ?></p>
+					<hr />
+					<p class="bold mt-5 mb-5 white"><?= $post['title'] ?></p>
+					<p class="text-right grey mt-5" ><?= $post['creation_date_fr'] ?></p>
+				</div>
 			</div>
+			</a>
 		</div>
-	</a>
+	
 	<?php
 	}
 ?>
