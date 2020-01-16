@@ -69,49 +69,66 @@ function listMembers()
 
 function eraseMember($member)
 {
-	$memberManager = new \AchievementGet\Website\Model\MemberManager();
+	if (isset($member)) {
+		$memberManager = new \AchievementGet\Website\Model\MemberManager();
 
-	$deleteMember = $memberManager->deleteMember($member);
+		$deleteMember = $memberManager->deleteMember($member);
 
-	if ($addArticle === false)
-	{
-		throw new Exception('Impossible de supprimer l\'utilisateur');
+		if ($addArticle === false)
+		{
+			throw new Exception('Impossible de supprimer l\'utilisateur');
+		}
+		else
+		{
+			header('Location: index.php?action=listMembers');
+		}
 	}
-	else
-	{
-		header('Location: index.php?action=listMembers');
+	else {
+		throw new Exception('Aucun nom de membre envoyé.');
 	}
 }
 
 function promoteMember($member)
 {
-	$memberManager = new \AchievementGet\Website\Model\MemberManager();
-
-	$promoteMember = $memberManager->promoteMember($member);
-
-	if ($promoteMember === false)
+	if (isset($member))
 	{
-		throw new Exception('Impossible de changer le rang du membre');
+		$memberManager = new \AchievementGet\Website\Model\MemberManager();
+
+		$promoteMember = $memberManager->promoteMember($member);
+
+		if ($promoteMember === false)
+		{
+			throw new Exception('Impossible de changer le rang du membre');
+		}
+		else
+		{
+			header('Location: index.php?action=listMembers');
+		}
 	}
-	else
-	{
-		header('Location: index.php?action=listMembers');
+	else {
+		throw new Exception('Aucun nom de membre envoyé.');
 	}
 }
 
 function demoteMember($member)
 {
-	$memberManager = new \AchievementGet\Website\Model\MemberManager();
-
-	$demoteMember = $memberManager->demoteMember($member);
-
-	if ($addArticle === false)
+	if (isset($member))
 	{
-		throw new Exception('Impossible de changer le rang du membre');
+		$memberManager = new \AchievementGet\Website\Model\MemberManager();
+
+		$demoteMember = $memberManager->demoteMember($member);
+
+		if ($addArticle === false)
+		{
+			throw new Exception('Impossible de changer le rang du membre');
+		}
+		else
+		{
+			header('Location: index.php?action=listMembers');
+		}
 	}
-	else
-	{
-		header('Location: index.php?action=listMembers');
+	else {
+		throw new Exception('Aucun nom de membre envoyé.');
 	}
 }
 
@@ -134,33 +151,45 @@ function listReported()
 
 function deleteComment($id)
 {
-	$commentManager = new \AchievementGet\Website\Model\CommentManager();
-
-	$deleteComment = $commentManager->eraseComment($id);
-
-	if ($deleteComment === false)
+	if (isset($id) && $id > 0)
 	{
-		throw new Exception('Impossible de supprimer le commentaire');
+		$commentManager = new \AchievementGet\Website\Model\CommentManager();
+
+		$deleteComment = $commentManager->eraseComment($id);
+
+		if ($deleteComment === false)
+		{
+			throw new Exception('Impossible de supprimer le commentaire');
+		}
+		else
+		{
+			header('Location: index.php?action=listReported');
+		}
 	}
-	else
-	{
-		header('Location: index.php?action=listReported');
+	else {
+		throw new Exception('Aucun identifiant de commentaire envoyé.');
 	}
 }
 
 function deleteMessage($id)
 {
-	$messagesForumManager = new \AchievementGet\Website\Model\MessagesForumManager();
-
-	$deleteMessage = $messagesForumManager->eraseMessage($id);
-
-	if ($deleteMessage === false)
+	if ($isset($id) && $id > 0)
 	{
-		throw new Exception('Impossible de supprimer le message');
+		$messagesForumManager = new \AchievementGet\Website\Model\MessagesForumManager();
+
+		$deleteMessage = $messagesForumManager->eraseMessage($id);
+
+		if ($deleteMessage === false)
+		{
+			throw new Exception('Impossible de supprimer le message');
+		}
+		else
+		{
+			header('Location: index.php?action=listReported');
+		}
 	}
-	else
-	{
-		header('Location: index.php?action=listReported');
+	else {
+		throw new Exception('Aucun identifiant de message envoyé.');
 	}
 }
 
@@ -182,43 +211,61 @@ function listPost()
 
 function deletePost($id)
 {
-	$postManager = new AchievementGet\Website\Model\PostManager();
-
-	$deletePost = $postManager->erasePost($id);
-
-	if ($deletePost === false)
+	if (isset($id) && $id > 0)
 	{
-		throw new Exception('Impossible de supprimer l\'article.');
+		$postManager = new AchievementGet\Website\Model\PostManager();
+
+		$deletePost = $postManager->erasePost($id);
+
+		if ($deletePost === false)
+		{
+			throw new Exception('Impossible de supprimer l\'article.');
+		}
+		else
+		{
+			header('Location: index.php?action=listPost');
+		}
 	}
-	else
-	{
-		header('Location: index.php?action=listPost');
+	else {
+		throw new Exception('Aucun identifiant d\'article envoyé.');
 	}
 }
 
 function updatePost($id)
 {
-	$postManager = new AchievementGet\Website\Model\PostManager();
-	$post = $postManager->getPostById($id);
+	if ($isset($id) && $id > 0)
+	{
+		$postManager = new AchievementGet\Website\Model\PostManager();
+		$post = $postManager->getPostById($id);
 
-	require('view/backend/updatePostView.php');
+		require('view/backend/updatePostView.php');
+	}
+	else {
+		throw new Exception('Aucun identifiant d\'article envoyé.');
+	}
 }
 
 function confirmUpdatePost($id, $title, $image,$category, $content)
 {
-	$postManager = new \AchievementGet\Website\Model\PostManager();
-	$utilitaryManager = new \AchievementGet\Website\model\UtilitaryManager();
-
-	$completeName = $utilitaryManager->verifyArticleImage($title, $image);
-
-	$updateArticle = $postManager->changePost($id, $title, $completeName, $category, $content);
-
-	if ($updateArticle === false)
+	if ($isset($id) && $id > 0)
 	{
-		throw new Exception('Impossible de modifier l\'article.');
+		$postManager = new \AchievementGet\Website\Model\PostManager();
+		$utilitaryManager = new \AchievementGet\Website\model\UtilitaryManager();
+
+		$completeName = $utilitaryManager->verifyArticleImage($title, $image);
+
+		$updateArticle = $postManager->changePost($id, $title, $completeName, $category, $content);
+
+		if ($updateArticle === false)
+		{
+			throw new Exception('Impossible de modifier l\'article.');
+		}
+		else
+		{
+			header('Location: index.php?action=listPost');
+		}
 	}
-	else
-	{
-		header('Location: index.php?action=listPost');
+	else {
+		throw new Exception('Aucun identifiant d\'article envoyé.');
 	}
 }

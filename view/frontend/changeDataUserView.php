@@ -27,23 +27,6 @@ if($memberInformation['pseudo'] == $_SESSION['pseudo']) {
 		<hr />
 		<div class="row">
 			<div class="col-12 col-md-6 mb-2">
-				<?php
-					if($error >= 1 && $error <= 3) {
-						if ($error == 1)
-							$error = "Nous n'avons pas réussi à traiter votre image, veuillez réessayer.";
-						elseif($error == 2)
-							$error = "L'image que vous avez envoyer est trop lourde.";
-						elseif ($error == 3)
-							$error = "L'image envoyée n'est pas au bon format.";
-						?>
-
-						<div class="error centerElement">
-							<p><i class="fas fa-times-circle fa-2x"></i></p>
-							<p><?= $error ?></p>
-						</div>
-						<?php
-					}
-				?>
 				<p class="infoProfileImage">Taille max. 1 Mo (PNG, JPG, JPEG ou GIF)</p>
 			</div>
 			<div class="col-12 col-md-6">
@@ -113,24 +96,6 @@ if($memberInformation['pseudo'] == $_SESSION['pseudo']) {
 		</form>
 	</div>
 </div>
-
-<?php
-	if($error >= 5 && $error <= 7)
-	{
-		if ($error == 5)
-			$error = "Le mot de passe actuel rentrer est incorrect.";
-		elseif ($error == 6)
-			$error = "Les deux nouveaux mot de passes sont différents";
-		elseif($error == 7)
-			$error = "Le nouveaux mot de passe doit faire entre 6 et 16 caractères et ne pas contenir d'espace ou de tabulation.";
-		?>
-			<div class="error centerElement" class="mb-1">
-				<p><i class="fas fa-times-circle fa-2x"></i></p>
-				<p><?= $error ?></p>
-			</div>
-		<?php
-	}
-?>
 
 <div class="row mt-5 profileInfos darkPanel mb-5 centerElement">
 	<h2>Autres</h2>

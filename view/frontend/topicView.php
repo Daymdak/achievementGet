@@ -27,7 +27,7 @@ while($message = $listMessages->fetch())
 	?>
 	<div class="col-12 col-lg-10 centerElement">
 		<p class="titleSection mb-2">Ajouter un message</p>
-		<form action="index.php?action=addMessage&id=<?= $_GET['id'] ?>" method="post" class="darkPanel mb-5 col-12">
+		<form action="index.php?action=addMessage&id=<?= $_GET['id'] ?>&user=<?= $_SESSION['pseudo'] ?>" method="post" class="darkPanel mb-5 col-12">
 			<textarea name="message" class="m-1" maxlength="2000" required></textarea>
 			<input type="submit" value="Poster" class="transition button centerElement white" />
 		</form>
