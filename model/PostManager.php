@@ -16,6 +16,22 @@ class PostManager extends Manager
 		return $query;
 	}
 
+	public function getAllPost()
+	{
+		$db = $this->dbConnect();
+		$query = $db->query('SELECT * FROM posts ORDER BY id DESC');
+
+		return $query;
+	}
+
+	public function erasePost($id)
+	{
+		$db = $this->dbConnect();
+		$query = $db->prepare('DELETE FROM posts WHERE id = ?');
+		$query->execute(array($id));
+		$query->closeCursor();
+	}
+
 	public function getFewPostsWhere($offset, $limit, $category)
 	{
 		$db = $this->dbConnect();
@@ -68,6 +84,20 @@ class PostManager extends Manager
 			'image' => $completeName,
 			'title' => $title,
 			'author' => $_SESSION['pseudo'],
+			'category' => $category,
+			'content' => $content
+		));
+		$query->closeCursor();
+	}
+
+	public function changePost($id, $title, $completeName, $category, $content)
+	{
+		$db = $this->dbConnect(); 
+		$query = $db->prepare('UPDATE posts SET title = :title, nameImage = :image, category = :category, content = :content WHERE id = :id');
+		$query->execute(array(
+			'id' => $id,
+			'image' => $completeName,
+			'title' => $title,
 			'category' => $category,
 			'content' => $content
 		));

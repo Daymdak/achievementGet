@@ -2,6 +2,16 @@
 
 <?php ob_start(); ?>
 
+<div class="darkPanel mb-3 col-12 col-md-10 centerElement">
+	<h1 class="text-center">Panneau d'administration</h1>
+</div>
+
+<div class="col-12 col-md-10 col-lg-7 centerElement darkPanel spaceAround">
+	<a href="index.php?action=listMembers" title="Liste des membres"><i class="fas fa-users fa-2x yellow"></i></a>
+	<a href="index.php?action=listReported" title="Commentaires et messages signalés"><i class="fas fa-exclamation-circle fa-2x yellow"></i></a>
+	<a href="index.php?action=listPost" title="Liste des articles"><i class="fas fa-copy fa-2x yellow"></i></a>
+</div>
+
 <div class="mt-3 col-12 col-md-10 col-lg-7 centerElement">
 	<p class="titleSection">Quelques stats</p>
 	<div class="mt-2 blockStat">

@@ -29,16 +29,14 @@ if ($elementByPage < $nbrElements)
 			<?php
 			if ($firstElement+$elementByPage < $nbrElements) {
 			?>
-				<a href="index.php?action=<?= $_GET['action']?>
-				<?php
+				<a href="index.php?action=<?= $_GET['action']?><?php
 				if (isset($_GET['id'])) {
 					echo "&id=" . $_GET['id'];	
 				}
 				if (isset($_GET['type'])) {
 					echo "&type=" . $_GET['type'];
 				}
-				?>
-				&page=<?= $page+1 ?>" class="yellow" ><i class="fas fa-forward"></i></a>
+				?>&page=<?= $page+1 ?>" class="yellow" ><i class="fas fa-forward"></i></a>
 			<?php
 			}
 			?>

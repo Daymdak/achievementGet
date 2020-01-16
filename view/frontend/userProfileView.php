@@ -1,4 +1,4 @@
-<?php $title = htmlspecialchars(htmlspecialchars($memberInformation['pseudo'])) . ' - Profil' ?>
+<?php $title = htmlspecialchars($memberInformation['pseudo']) . ' - Profil' ?>
 
 <?php ob_start(); ?>
 <div class="row mt-2 profileHead darkPanel centerElement">
@@ -103,8 +103,8 @@
 </div>
 
 <div class="row profileInfos profileBio mt-5 mb-5 darkPanel centerElement">
-	<h2>Biographie</h2>
 	<div class="col-12">
+		<h2>Biographie</h2>
 		<hr />
 		<p class="mb-3"><?= htmlspecialchars($memberInformation['bio']) ?></p>
 	</div>

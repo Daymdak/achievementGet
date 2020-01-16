@@ -169,6 +169,84 @@ try {
 		if($_GET['action'] == 'addArticle') {
 			addArticle($_POST['title'], $_FILES['nameImage'], $_POST['category'], $_POST['content']);
 		}
+		if ($_GET['action'] == 'listMembers') {
+			listMembers();
+		}
+		if($_GET['action'] == 'eraseMember') {
+			if (isset($_GET['member'])) {
+				eraseMember($_GET['member']);
+			}
+			else {
+				throw new Exception('Aucun membre renseigné.');
+			}
+		}
+		if($_GET['action'] == 'demoteMember') {
+			if (isset($_GET['member'])) {
+				demoteMember($_GET['member']);
+			}
+			else {
+				throw new Exception('Aucun membre renseigné.');
+			}
+		}
+		if($_GET['action'] == 'promoteMember') {
+			if (isset($_GET['member'])) {
+				promoteMember($_GET['member']);
+			}
+			else {
+				throw new Exception('Aucun membre renseigné.');
+			}
+		}
+		if ($_GET['action'] == 'listReported') {
+			listReported();
+		}
+		if ($_GET['action'] == 'deleteComment') {
+			if (isset($_GET['id']) && $_GET['id'] > 0)
+			{
+				deleteComment($_GET['id']);
+			}
+			else {
+				throw new Exception('Aucun identifiant de commentaire renseigné.');
+			}
+		}
+		if ($_GET['action'] == 'deleteMessage') {
+			if (isset($_GET['id']) && $_GET['id'] > 0)
+			{
+				deleteMessage($_GET['id']);
+			}
+			else {
+				throw new Exception('Aucun identifiant de message renseigné.');
+			}
+		}
+		if ($_GET['action'] == 'listPost') {
+			listPost();
+		}
+		if ($_GET['action'] == 'deletePost') {
+			if (isset($_GET['id']) && $_GET['id'] > 0)
+			{
+				deletePost($_GET['id']);
+			}
+			else {
+				throw new Exception('Aucun identifiant d\'article envoyé.');
+			}
+		}
+		if ($_GET['action'] == 'updatePost') {
+			if (isset($_GET['id']) && $_GET['id'] > 0)
+			{
+				updatePost($_GET['id']);
+			}
+			else {
+				throw new Exception('Aucun identifiant d\'article envoyé.');
+			}
+		}
+		if ($_GET['action'] == 'confirmUpdatePost') {
+			if (isset($_GET['id']) && $_GET['id'] > 0)
+			{
+				confirmUpdatePost($_GET['id'], $_POST['title'], $_FILES['nameImage'],$_POST['category'], $_POST['content']);
+			}
+			else {
+				throw new Exception('Aucun identifiant d\'article envoyé.');
+			}
+		}
 	}
 	else {
 		homePage();

@@ -92,7 +92,7 @@ function userProfile($user)
 	$memberInformation = $memberManager->getMemberInformation($user);
 	$nbrComments = $commentManager->howMuchAuthorComments($user);
 
-	require('view/frontend/userprofileview.php');
+	require('view/frontend/userProfileView.php');
 }
 
 function changeDataUser($error)
@@ -101,7 +101,7 @@ function changeDataUser($error)
 
 	$memberInformation = $memberManager->getMemberInformation($_SESSION['pseudo']);
 
-	require('view/frontend/changedatauserview.php');
+	require('view/frontend/changeDataUserView.php');
 }
 
 function updateDataUser($firstname, $name, $country, $phone, $birthdate, $gender, $bio) {

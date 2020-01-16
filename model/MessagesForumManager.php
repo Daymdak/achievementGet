@@ -28,6 +28,21 @@ class MessagesForumManager extends Manager
 		return $nbrMessages['nbMessages'];
 	}
 
+	public function eraseMessage($id)
+	{
+		$db = $this->dbConnect();
+		$query = $db->prepare('DELETE FROM messagesforum WHERE id= ?');
+		$query->execute(array($id));
+		$query->closeCursor();
+	}
+
+	public function getReportedMessages()
+	{
+		$db = $this->dbConnect();
+		$query = $db->query('SELECT * FROM messagesforum WHERE reports > 0 ORDER BY reports DESC');
+		return $query;
+	}
+
 	public function howMuchMessages()
 	{
 		$db = $this->dbConnect();

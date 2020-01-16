@@ -7,7 +7,7 @@
 		<h1><?= htmlspecialchars($post['title']) ?></h1>
 		<p class="metaDataPost grey">Publié le <?= $post['creation_date_fr'] ?> par <?= htmlspecialchars($post['author']) ?></p>
 		<hr />
-		<p><?= $post['content'] ?></p>
+		<?= $post['content'] ?>
 	</div>
 </div>
 
@@ -36,49 +36,7 @@ while($comment = $comments->fetch())
 {
 ?>
 	<div class="postComment centerElement mb-3 darkPanel col-10">
-		<?php
-			$postDate = strtotime($comment['comment_date']);
-			$now = time();
-			
-		    $diff = abs($now - $postDate);
-		    $return = array();
-		 
-		    $tmp = $diff;
-		    $return['second'] = $tmp % 60;
-		 
-		    $tmp = floor( ($tmp - $return['second']) /60 );
-		    $return['minute'] = $tmp % 60;
-		 
-		    $tmp = floor( ($tmp - $return['minute'])/60 );
-		    $return['hour'] = $tmp % 24;
-
-		    $tmp = floor( ($tmp - $return['hour'])  /24 );
-   			$return['day'] = $tmp;
-			 
-		    
-		    if ($return['day'] > 0) 
-		    {
-		    	if ($return['day'] == 1)
-		    		$timeSincePost = "il y a " . $return['day'] . " jour";
-		    	else
-		    		$timeSincePost = "il y a " . $return['day'] . " jours";
-		    }
-		    elseif ($return['hour'] > 0 && $return['hour'] < 24)
-		    {
-		    	if ($return['hour'] == 1)
-		    		$timeSincePost = "il y a 1 heure";
-		    	else
-		    		$timeSincePost = "il y a " . $return['hour'] . " heures";
-		    }
-		    else
-		    {
-		    	if ($return['minute'] <= 1)
-		    		$timeSincePost = "à l'instant";
-		    	else
-		    		$timeSincePost = "il y a " . $return['minute'] . " minutes";
-		    }
-		?>
-		<p><a href="index.php?action=userprofile&user=<?= $comment['author'] ?>" class="yellow"><img src="public/images/profileimageusers/<?= $comment['nameImage'] ?>" alt="<?= htmlspecialchars($comment['author']) ?>" class="avatar col-1 mr-1"/><strong><?= htmlspecialchars($comment['author']); ?> </a></strong> <?= $timeSincePost ?>
+		<p><a href="index.php?action=userprofile&user=<?= $comment['author'] ?>" class="yellow"><img src="public/images/profileimageusers/<?= $comment['nameImage'] ?>" alt="<?= htmlspecialchars($comment['author']) ?>" class="avatar col-1 mr-1"/><strong><?= htmlspecialchars($comment['author']); ?> </a></strong> - <?= $comment['comment_date_fr'] ?>
 			<?php
 			if(isset($_SESSION['pseudo']))
 			{

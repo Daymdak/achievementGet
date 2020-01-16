@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -16,6 +16,5 @@
 			<?= $content ?>
 		</div>
 		<?php require_once("view/frontend/footer.php"); ?>
-		<script src="public/js/index.js"></script>
 	</body>
 </html>

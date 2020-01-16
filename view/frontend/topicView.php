@@ -11,7 +11,7 @@ while($message = $listMessages->fetch())
 {
 ?>
 	<div class="postComment centerElement mb-3 mt-3 darkPanel col-12 col-lg-10">
-		<p><a href="index.php?action=userprofile&user=<?= $message['author'] ?>"><img src="public/images/profileimageusers/<?= $message['nameImage'] ?>" alt="<?= htmlspecialchars($message['author']) ?>" class="avatar col-2 col-md-1 mr-3"/><strong class="yellow"><?= htmlspecialchars($message['author']); ?></a></strong> - <?= $message['message_date_fr'] ?></p>
+		<p><a href="index.php?action=userprofile&user=<?= $message['author'] ?>"><img src="public/images/profileimageusers/<?= $message['nameImage'] ?>" alt="<?= htmlspecialchars($message['author']) ?>" class="avatar col-2 col-md-1 mr-3"/><strong class="yellow"><?= htmlspecialchars($message['author']); ?></strong></a> - <?= $message['message_date_fr'] ?></p>
 		<hr />
 		<?= htmlspecialchars($message['message']); ?>
 	</div>

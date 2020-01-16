@@ -13,9 +13,16 @@ class MemberManager extends Manager
 			'pseudo' => $pseudo
 		));
 		$memberInformation = $query->fetch();
-		$query->closeCursor();
 
 		return $memberInformation;
+	}
+
+	public function getAllMembers()
+	{
+		$db = $this->dbConnect();
+		$query = $db->query('SELECT * FROM members ORDER BY id');
+
+		return $query;
 	}
 
 	public function verifyRegisterData($pseudo, $password1, $password2, $email)
@@ -191,5 +198,35 @@ class MemberManager extends Manager
 		$query->closeCursor();
 
 		return $nbrElements['nbElement'];
+	}
+
+	public function deleteMember($member)
+	{
+		$db = $this->dbConnect();
+		$query = $db->prepare('DELETE FROM members WHERE pseudo = :member');
+		$query->execute(array(
+			'member' => $member
+		));
+		$query->closeCursor();
+	}
+
+	public function promoteMember($member)
+	{
+		$db = $this->dbConnect();
+		$query = $db->prepare('UPDATE members SET role = "Administrators" WHERE pseudo = :member');
+		$query->execute(array(
+			'member' => $member
+		));
+		$query->closeCursor();
+	}
+
+	public function demoteMember($member)
+	{
+		$db = $this->dbConnect();
+		$query = $db->prepare('UPDATE members SET role = "Members" WHERE pseudo = :member');
+		$query->execute(array(
+			'member' => $member
+		));
+		$query->closeCursor();
 	}
 }

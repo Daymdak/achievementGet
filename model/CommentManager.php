@@ -8,7 +8,7 @@ class CommentManager extends Manager
 	public function getPostComments($id)
 	{
 		$db = $this->dbConnect();
-		$query = $db->prepare('SELECT * FROM comments WHERE post_id = ? ORDER BY id DESC');
+		$query = $db->prepare('SELECT id, author, nameImage, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%i\') as comment_date_fr FROM comments WHERE post_id = ? ORDER BY id DESC');
 		$query->execute(array($id));
 
 		return $query;
@@ -22,6 +22,22 @@ class CommentManager extends Manager
 		$query->closeCursor();
 
 		return $nbrElements['nbElement'];
+	}
+
+	public function eraseComment($id)
+	{
+		$db = $this->dbConnect();
+		$query = $db->prepare('DELETE FROM comments WHERE id= ?');
+		$query->execute(array($id));
+		$query->closeCursor();
+	}
+	
+	public function getReportedComments()
+	{
+		$db = $this->dbConnect();
+		$query = $db->query('SELECT * FROM comments WHERE reports > 0 ORDER BY reports DESC');
+
+		return $query;
 	}
 
 	public function howMuchReportedComments()
