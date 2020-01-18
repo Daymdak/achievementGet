@@ -16,5 +16,7 @@
 			<?= $content ?>
 		</div>
 		<?php require_once("view/frontend/footer.php"); ?>
+
+		<script src="public/js/index.js"></script>
 	</body>
 </html>

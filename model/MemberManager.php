@@ -40,36 +40,21 @@ class MemberManager extends Manager
 		}
 		if ($validity == true)
 		{
-			if(preg_match("#^[\S]{6,16}$#", $pseudo))
+			$query->closeCursor();
+			if($password1 == $password2)
 			{
+				$query = $db->prepare('INSERT INTO members(pseudo, password, email, inscription_date) VALUES (:pseudo, :password, :email, NOW())');
+				$query->execute(array(
+					'pseudo' => $pseudo,
+					'password' => password_hash($password1, PASSWORD_DEFAULT),
+					'email' => $email
+				));
+				$_SESSION['pseudo'] = $pseudo;
 				$query->closeCursor();
-				if($password1 == $password2)
-				{
-					if(preg_match("#^[\S]{6,16}$#", $password1))
-					{
-						if(preg_match("#^[\S]+@[\w]+\.[\w]{2,4}$#", $email))
-						{
-							$query = $db->prepare('INSERT INTO members(pseudo, password, email, inscription_date) VALUES (:pseudo, :password, :email, NOW())');
-							$query->execute(array(
-								'pseudo' => $pseudo,
-								'password' => password_hash($password1, PASSWORD_DEFAULT),
-								'email' => $email
-							));
-							$_SESSION['pseudo'] = $pseudo;
-							$query->closeCursor();
-							return 0;
-						}
-						else
-							return 5;
-					}
-					else
-						return 4;
-				}
-				else
-					return 3;
+				return 0;
 			}
 			else
-				return 2;
+				return 3;
 		}
 		else
 			return 1;
@@ -78,7 +63,7 @@ class MemberManager extends Manager
 	public function beConnect($pseudo, $password, $rememberMe)
 	{
 		$db = $this->dbConnect();
-		$query = $db->prepare('SELECT id, pseudo, password FROM members WHERE pseudo = :pseudo');
+		$query = $db->prepare('SELECT id, pseudo, password, role FROM members WHERE pseudo = :pseudo');
 		$query->execute(array(
 			'pseudo' => $pseudo
 		));
@@ -94,8 +79,14 @@ class MemberManager extends Manager
 				{
 					setcookie('pseudo', $result['pseudo'], time() + 365*24*3600, null, null, false, true);
 					setcookie('password', $result['password'], time() + 365*24*3600, null, null, false, true);
+					if ($result['role'] == "Administrators") {
+						setcookie('role', $result['role'], time() + 365*24*3600, null, null, false, true);
+					}
 				}
 				$_SESSION['pseudo'] = $pseudo;
+				if ($result['role'] == "Administrators") {
+					$_SESSION['role'] = $result['role'];
+				}
 				$query->closeCursor();
 				return 0;
 			}
@@ -159,19 +150,14 @@ class MemberManager extends Manager
 		{
 			if ($newPassword === $newPassword2)
 			{
-				if(preg_match("#^[\S]{6,16}$#", $newPassword))
-				{
-					$db = $this->dbConnect();
-					$query = $db->prepare('UPDATE members SET password = :password WHERE pseudo = :pseudo');
-					$query->execute(array(
-						'password' => password_hash($newPassword, PASSWORD_DEFAULT),
-						'pseudo' => $_SESSION['pseudo']
-					));
-					$query->closeCursor();
-					return 4;
-				}
-				else
-					return 7;
+				$db = $this->dbConnect();
+				$query = $db->prepare('UPDATE members SET password = :password WHERE pseudo = :pseudo');
+				$query->execute(array(
+					'password' => password_hash($newPassword, PASSWORD_DEFAULT),
+					'pseudo' => $_SESSION['pseudo']
+				));
+				$query->closeCursor();
+				return 4;
 			}
 			else
 				return 6;
@@ -227,6 +213,24 @@ class MemberManager extends Manager
 		$query->execute(array(
 			'member' => $member
 		));
+		$query->closeCursor();
+	}
+
+	public function verifyRight($member)
+	{
+		$db = $this->dbConnect();
+		$query = $db->prepare('SELECT role FROM members WHERE pseudo = :pseudo');
+		$query->execute(array(
+			'member' => $member
+		));
+		$role = $query->fetch();
+
+		if ($role == "Administrators") {
+			return true;
+		}
+		else {
+			return false;
+		}
 		$query->closeCursor();
 	}
 }

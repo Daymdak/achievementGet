@@ -28,6 +28,38 @@ if($memberInformation['pseudo'] == $_SESSION['pseudo']) {
 		<div class="row">
 			<div class="col-12 col-md-6 mb-2">
 				<p class="infoProfileImage">Taille max. 1 Mo (PNG, JPG, JPEG ou GIF)</p>
+				<?php 
+					if (isset($_GET['error']))
+					{
+						if ($_GET['error'] == 3)
+						{
+						?>
+							<div class="error centerElement col-12 col-md-10 col-lg-7">
+								<p><i class="fas fa-info-circle fa-2x"></i></p>
+								<p>Extension de fichier non prise en charge.</p>
+							</div>
+						<?php
+						}
+						if ($_GET['error'] == 2)
+						{
+						?>
+							<div class="error centerElement col-12 col-md-10 col-lg-7">
+								<p><i class="fas fa-info-circle fa-2x"></i></p>
+								<p>Le fichier est trop lourd.</p>
+							</div>
+						<?php
+						}
+						if ($_GET['error'] == 1)
+						{
+						?>
+							<div class="error centerElement col-12 col-md-10 col-lg-7">
+								<p><i class="fas fa-info-circle fa-2x"></i></p>
+								<p>Le fichier s'est mal envoyé.</p>
+							</div>
+						<?php
+						}
+					}
+				?>
 			</div>
 			<div class="col-12 col-md-6">
 				<form action="index.php?action=addprofileimage" method="post" enctype="multipart/form-data" class="centerElement">
@@ -89,15 +121,39 @@ if($memberInformation['pseudo'] == $_SESSION['pseudo']) {
 	<div class="col-12">
 		<hr />
 		<form action="index.php?action=updatepassword&user=<?= $_SESSION['pseudo'] ?>" method="POST" class="centerElement col-12">
-			<p><label for="exPassword" class="col-7 col-md-6">Mot de passe actuel :</label><input type="password" name="exPassword" placeholder="Mot de passe actuel" class="col-5" required/></p>
-			<p><label for="newPassword" class="col-7 col-md-6">Nouveau mot de passe :</label><input type="password" name="newPassword"  placeholder="Nouveau mot de passe" class="col-5" required /></p>
-			<p><label for="newPassword2" class="col-7 col-md-6">Confirmation du mot de passe :</label><input type="password" name="newPassword2" placeholder="Confirmation du mot de passe" class="col-5" required /></p>
+			<p><label for="exPassword" class="col-7 col-md-6">Mot de passe actuel :</label><input type="password" name="exPassword" placeholder="Mot de passe actuel" class="col-5" pattern="^[\S]{6,16}$" required/></p>
+			<p><label for="newPassword" class="col-7 col-md-6">Nouveau mot de passe :</label><input type="password" name="newPassword"  placeholder="Nouveau mot de passe" class="col-5" pattern="^[\S]{6,16}$" required /></p>
+			<p><label for="newPassword2" class="col-7 col-md-6">Confirmation du mot de passe :</label><input type="password" name="newPassword2" placeholder="Confirmation du mot de passe" class="col-5" pattern="^[\S]{6,16}$" required /></p>
 			<input type="submit" value="Changer"  class="button transition centerElement white" />
 		</form>
 	</div>
 </div>
 
-<div class="row mt-5 profileInfos darkPanel mb-5 centerElement">
+<?php 
+	if (isset($_GET['error']))
+	{
+		if ($_GET['error'] == 5)
+		{
+		?>
+			<div class="error centerElement col-12 col-md-10 col-lg-7">
+				<p><i class="fas fa-info-circle fa-2x"></i></p>
+				<p>Le mot de passe actuel renseigné est incorrect.</p>
+			</div>
+		<?php
+		}
+		if ($_GET['error'] == 6)
+		{
+		?>
+			<div class="error centerElement col-12 col-md-10 col-lg-7">
+				<p><i class="fas fa-info-circle fa-2x"></i></p>
+				<p>Les deux nouveaux mots de passe sont différents.</p>
+			</div>
+		<?php
+		}	
+	}
+?>
+
+<div class="row mt-2 profileInfos darkPanel mb-5 centerElement">
 	<h2>Autres</h2>
 	<div class="col-12 yellow mb-5">
 		<hr />

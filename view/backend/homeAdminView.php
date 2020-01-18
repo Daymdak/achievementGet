@@ -25,7 +25,38 @@
 		<div class="stat darkPanel text-center"><p class="moySize yellow"><?= $nbrReportedMessages ?></p><p>Messages forum signalé(s)</p></div>
 	</div>
 </div>
-
+	<?php
+	if (isset($_GET['error']))
+		{
+			if ($_GET['error'] == 3)
+			{
+			?>
+				<div class="error centerElement col-12 col-md-10 col-lg-7">
+					<p><i class="fas fa-info-circle fa-2x"></i></p>
+					<p>Extension de fichier non prise en charge.</p>
+				</div>
+			<?php
+			}
+			if ($_GET['error'] == 2)
+			{
+			?>
+				<div class="error centerElement col-12 col-md-10 col-lg-7">
+					<p><i class="fas fa-info-circle fa-2x"></i></p>
+					<p>Le fichier est trop lourd.</p>
+				</div>
+			<?php
+			}
+			if ($_GET['error'] == 1)
+			{
+			?>
+				<div class="error centerElement col-12 col-md-10 col-lg-7">
+					<p><i class="fas fa-info-circle fa-2x"></i></p>
+					<p>Le fichier s'est mal envoyé.</p>
+				</div>
+			<?php
+			}
+		}
+	?>
 <div class="mt-3 mb-5 col-12 col-md-10 col-lg-7 centerElement">
 	<p class="titleSection">Ajouter un article</p>
 	<div class="darkPanel mt-2">

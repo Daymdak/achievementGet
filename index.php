@@ -1,27 +1,20 @@
 <?php
 session_start();
-
-/*
 date_default_timezone_set('Europe/Paris');
 
-if (isset($_COOKIE['pseudo']) && isset($_COOKIE['password']))
-{
-	$_SESSION['pseudo'] = $_COOKIE['pseudo'];
-}
-
-Déplacer cette partie hors du routeur
-*/
 require('controller/frontend.php');
 require('controller/backend.php');
 
 try {
-	/*
-	if (isset($_SESSION['pseudo']))
-	{
+	if (isset($_COOKIE['pseudo']) && isset($_COOKIE['password'])) {
+		$_SESSION['pseudo'] = $_COOKIE['pseudo'];
+		if (isset($_COOKIE['role']) == "Adminstrators") {
+			$_SESSION['role'] = $_COOKIE['role'];
+		}
+	}
+	if (isset($_SESSION['pseudo'])) {
 		updateLastConnexion($_SESSION['pseudo']);
 	}
-	Déplacer cette partie également
-	*/
 	if (isset($_GET['action'])) {
 		if ($_GET['action'] == 'homepage') {
 			homePage();

@@ -76,6 +76,7 @@ function unlog()
 {
 	session_destroy();
 	setcookie('pseudo', '');
+	setcookie('role', '');
 
 	header('Location: index.php');
 }
@@ -179,7 +180,7 @@ function updateAvatar($image)
 	$extension = $utilitaryManager->verifyProfileImage($image);
 
 	if ($extension >= 1 && $extension <= 3) {
-		header('Location: index.php?action=changedatauser&user=' . $_SESSION['pseudo'] . '&error=' . $addImage);
+		header('Location: index.php?action=changedatauser&user=' . $_SESSION['pseudo'] . '&error=' . $extension);
 	}
 	else {
 		$memberManager->changeAvatar($image, $extension);
