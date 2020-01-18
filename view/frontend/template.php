@@ -17,6 +17,7 @@
 		</div>
 		<?php require_once("view/frontend/footer.php"); ?>
 
+		<script src="public/js/slideshow.js"></script>
 		<script src="public/js/index.js"></script>
 	</body>
 </html>

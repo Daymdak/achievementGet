@@ -335,3 +335,8 @@ function reportComm($postid, $id)
 		throw new Exception('Aucun identifiant de commentaire envoyé.');
 	}
 }
+
+function howItWorks()
+{
+	require('view/frontend/howItWorksView.php');
+}

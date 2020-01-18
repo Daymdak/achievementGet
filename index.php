@@ -109,6 +109,9 @@ try {
 		if ($_GET['action'] == 'confirmUpdatePost') {
 			confirmUpdatePost($_GET['id'], $_POST['title'], $_FILES['nameImage'],$_POST['category'], $_POST['content']);
 		}
+		if ($_GET['action'] == 'howItWorks') {
+			howItWorks();
+		}
 	}
 	else {
 		homePage();

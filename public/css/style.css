@@ -60,7 +60,7 @@ hr {
 	background-color: #EFEFEF;
 	box-shadow: 0px 0px 3px black;
 	padding: 80px 2% 1px 2%;
-	min-height: 93vh;
+	min-height: 92vh;
 }
 
 .avatar {
@@ -150,9 +150,10 @@ footer {
 	position: relative;
 	bottom: 0;
 	left: 0;
-	height: 7vh;
+	height: 8vh;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: flex-end;
 	align-items: flex-end;
 	background-color: #222;
 	padding-bottom: 1%;
@@ -335,6 +336,34 @@ figure:hover figcaption {
 .grey
 {
 	color: #ccc;
+}
+
+
+/*How It Works*/
+
+#box img
+{
+ 	max-width: 100%;
+}
+
+#slider
+{
+	display: flex;
+}
+
+.slider_button
+{
+	border: none !important;
+	color: #EFBB12;
+	background-color: #333;
+}
+
+#playButton
+{
+	color: #EFBB12;
+	border: none;
+	display: block;
+	outline: none;
 }
 
 /*Admin*/

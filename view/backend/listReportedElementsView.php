@@ -18,7 +18,7 @@
 					<div class="transition post text-justify">
 						<p class="row">
 							<span class="col-12 yellow">
-								<?= $reportedComment['author'] ?>
+								<?= htmlspecialchars($reportedComment['author']) ?>
 							</span>
 							<span class="col-12">
 								Reports : <?= $reportedComment['reports'] ?> 
@@ -30,7 +30,7 @@
 								Posté le : <?= $reportedComment['comment_date'] ?>
 							</span>
 						</p>
-						<p>Message : <?= $reportedComment['comment'] ?></p>
+						<p>Message : <?= htmlspecialchars($reportedComment['comment']) ?></p>
 					</div>
 				<?php
 				}
@@ -47,7 +47,7 @@
 					<div class="transition post text-justify">
 						<p class="row">
 							<span class="col-12 yellow">
-								<?= $reportedMessage['author'] ?>
+								<?= htmlspecialchars($reportedMessage['author']) ?>
 							</span>
 							<span class="col-12">
 								Reports : <?= $reportedMessage['reports'] ?> 
@@ -59,7 +59,7 @@
 								Posté le : <?= $reportedMessage['message_date'] ?>
 							</span>
 						</p>
-						<p>Message : <?= $reportedMessage['message'] ?></p>
+						<p>Message : <?= htmlspecialchars($reportedMessage['message']) ?></p>
 					</div>
 				<?php
 				}

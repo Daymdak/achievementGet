@@ -20,10 +20,10 @@
 				<div class="col-12 col-md-10 centerElement">
 					<div class="row centerElement">
 						<p class="col-12 text-center">
-							<?= $memberInfo['pseudo'] ?>
+							<?= htmlspecialchars($memberInfo['pseudo']) ?>
 						</p>
 						<p class="col-12 text-center">
-							<?= $memberInfo['email'] ?>
+							<?= htmlspecialchars($memberInfo['email']) ?>
 						</p>
 						<p class="col-12 text-center">
 							<?= $memberInfo['inscription_date'] ?>
