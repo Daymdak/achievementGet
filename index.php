@@ -8,7 +8,7 @@ require('controller/backend.php');
 try {
 	if (isset($_COOKIE['pseudo']) && isset($_COOKIE['password'])) {
 		$_SESSION['pseudo'] = $_COOKIE['pseudo'];
-		if (isset($_COOKIE['role']) == "Adminstrators") {
+		if (isset($_COOKIE['role']) == "Administrators") {
 			$_SESSION['role'] = $_COOKIE['role'];
 		}
 	}
@@ -111,6 +111,9 @@ try {
 		}
 		if ($_GET['action'] == 'howItWorks') {
 			howItWorks();
+		}
+		if ($_GET['action'] == 'bestGamesView') {
+			bestGamesView();
 		}
 	}
 	else {

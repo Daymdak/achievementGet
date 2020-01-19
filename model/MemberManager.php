@@ -80,7 +80,7 @@ class MemberManager extends Manager
 					setcookie('pseudo', $result['pseudo'], time() + 365*24*3600, null, null, false, true);
 					setcookie('password', $result['password'], time() + 365*24*3600, null, null, false, true);
 					if ($result['role'] == "Administrators") {
-						setcookie('role', $result['role'], time() + 365*24*3600, null, null, false, true);
+						setcookie('role', $result['role'], time() + 365*24*3600,null, null, false, true);
 					}
 				}
 				$_SESSION['pseudo'] = $pseudo;

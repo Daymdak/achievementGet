@@ -17,6 +17,9 @@
 	</div>
 </div>
 
+<script src="public/js/slideshow.js"></script>
+<script src="public/js/index.js"></script>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

@@ -340,3 +340,8 @@ function howItWorks()
 {
 	require('view/frontend/howItWorksView.php');
 }
+
+function bestGamesView()
+{
+	require('view/frontend/bestGamesView.php');
+}

@@ -227,7 +227,7 @@ function deleteMessage($id)
 {
 	if ($_SESSION['role'] == "Administrators")
 	{
-		if ($isset($id) && $id > 0)
+		if (isset($id) && $id > 0)
 		{
 			$messagesForumManager = new \AchievementGet\Website\Model\MessagesForumManager();
 
@@ -305,7 +305,7 @@ function updatePost($id)
 {
 	if ($_SESSION['role'] == "Administrators")
 	{
-		if ($isset($id) && $id > 0)
+		if (isset($id) && $id > 0)
 		{
 			$postManager = new AchievementGet\Website\Model\PostManager();
 			$post = $postManager->getPostById($id);
@@ -325,7 +325,7 @@ function confirmUpdatePost($id, $title, $image,$category, $content)
 {
 	if ($_SESSION['role'] == "Administrators")
 	{
-		if ($isset($id) && $id > 0)
+		if (isset($id) && $id > 0)
 		{
 			$postManager = new \AchievementGet\Website\Model\PostManager();
 			$utilitaryManager = new \AchievementGet\Website\model\UtilitaryManager();
